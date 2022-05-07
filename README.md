@@ -2,9 +2,15 @@
 
 This is a web application in React JS ⚛ to see the forecast weather 🌧 💨 🌥 ☀️ 🌨
 
+![Github](https://github.com/zearkiatos/forecast-weather-web/actions/workflows/action.yml/badge.svg)
+
 # Make with
 [![ReactJS](https://img.shields.io/badge/react-61dafb?style=for-the-badge&logo=react&logoColor=white&labelColor=000000)]()
 [![JavaScript](https://img.shields.io/badge/javascript-ead547?style=for-the-badge&logo=javascript&logoColor=white&labelColor=000000)]()
+
+# Project link
+
+Github: [https://zearkiatos.github.io/forecast-weather-web/](https://zearkiatos.github.io/forecast-weather-web/)
 
 # Getting Started with Create React App
 
