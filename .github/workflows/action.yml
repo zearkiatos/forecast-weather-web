@@ -28,7 +28,7 @@ jobs:
         touch .env &&
         echo "ENVIRONMENT=${ENVIRONMENT}" > .env
       env:
-        NODE_ENV: ${{ secrets.NODE_ENV }}
+        ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
     - name: Build docker 🐳
       run: docker build . -t=forecast-weather-web:ghb-$GITHUB_RUN_NUMBER
     - name: Build
