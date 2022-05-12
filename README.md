@@ -15,6 +15,8 @@ Github: [https://zearkiatos.github.io/forecast-weather-web/](https://zearkiatos.
 
 Gitlab 🦊: [https://caprilespe.gitlab.io/forecast-weather-web/](https://caprilespe.gitlab.io/forecast-weather-web/)
 
+Vercel: [https://forecast-weather-web.vercel.app/](https://forecast-weather-web.vercel.app/)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
