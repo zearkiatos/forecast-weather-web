@@ -17,6 +17,8 @@ Gitlab 🦊: [https://caprilespe.gitlab.io/forecast-weather-web/](https://capril
 
 Vercel: [https://forecast-weather-web.vercel.app/](https://forecast-weather-web.vercel.app/)
 
+Netlify: [https://forecast-weather-web.netlify.app/](https://forecast-weather-web.netlify.app/)
+
 Firebase 🔥: [https://forecast-weather-web.web.app/](https://forecast-weather-web.web.app/)
 
 
