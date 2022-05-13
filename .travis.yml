@@ -9,8 +9,8 @@ node_js:
 git:
   depth: 3
 script:
-  - npm run test
-  - npm run build
+  - yarn test
+  - yarn build
   - docker build . -t=forecast-weather-web:travis-build-$TRAVIS_JOB_ID
 on:
   branch: develop 
