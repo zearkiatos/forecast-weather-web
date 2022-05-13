@@ -12,4 +12,5 @@ services:
       - .env
     ports:
       - "3001:3000"
+      - "6007:6006"
     tty: true

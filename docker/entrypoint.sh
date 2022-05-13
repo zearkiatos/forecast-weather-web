@@ -1,6 +1,6 @@
 if [ $(echo "$ENVIRONMENT")=="develop" ]
 then
-    npm run dev
+    npm run docker:dev
 else
     npm run build
     npm run start

@@ -26,7 +26,8 @@
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "firebase:deploy": "firebase deploy",
-    "prefirebase:deploy": "npm run build"
+    "prefirebase:deploy": "npm run build",
+    "docker:dev": "concurrently --kill-others \"npm run dev\" \"npm run storybook\""
   },
   "eslintConfig": {
     "extends": [
@@ -67,6 +68,7 @@
     "@storybook/preset-create-react-app": "^4.1.0",
     "@storybook/react": "^6.4.22",
     "@storybook/testing-library": "^0.0.11",
+    "concurrently": "^7.1.0",
     "dotenv": "^16.0.1",
     "nodemon": "^2.0.16",
     "webpack": "^5.72.0"

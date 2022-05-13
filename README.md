@@ -17,6 +17,11 @@ Gitlab 🦊: [https://caprilespe.gitlab.io/forecast-weather-web/](https://capril
 
 Vercel: [https://forecast-weather-web.vercel.app/](https://forecast-weather-web.vercel.app/)
 
+Firebase 🔥: [https://forecast-weather-web.web.app/](https://forecast-weather-web.web.app/)
+
+
+https://forecast-weather-web.web.app/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
