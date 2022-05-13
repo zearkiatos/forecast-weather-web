@@ -4,6 +4,7 @@ This is a web application in React JS ⚛ to see the forecast weather 🌧 💨 
 
 ![Github](https://github.com/zearkiatos/forecast-weather-web/actions/workflows/action.yml/badge.svg)
 ![GitlabCI](https://gitlab.com/caprilespe/forecast-weather-web/badges/develop/pipeline.svg)
+![TravisCI](https://api.travis-ci.com/zearkiatos/forecast-weather-web.svg?branch=develop)
 
 # Make with
 [![ReactJS](https://img.shields.io/badge/react-61dafb?style=for-the-badge&logo=react&logoColor=white&labelColor=000000)]()
