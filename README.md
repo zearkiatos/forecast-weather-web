@@ -21,6 +21,8 @@ Netlify: [https://forecast-weather-web.netlify.app/](https://forecast-weather-we
 
 Firebase 🔥: [https://forecast-weather-web.web.app/](https://forecast-weather-web.web.app/)
 
+Render 📄: [https://forecast-weather-web.onrender.com/](https://forecast-weather-web.onrender.com/)
+
 
 https://forecast-weather-web.web.app/
 
