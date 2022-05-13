@@ -23,8 +23,8 @@ Firebase 🔥: [https://forecast-weather-web.web.app/](https://forecast-weather-
 
 Render 📄: [https://forecast-weather-web.onrender.com/](https://forecast-weather-web.onrender.com/)
 
+Railway 🚅: [https://forecast-weather-web-staging.up.railway.app/](https://forecast-weather-web-staging.up.railway.app/)
 
-https://forecast-weather-web.web.app/
 
 # Getting Started with Create React App
 

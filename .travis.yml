@@ -1,0 +1,16 @@
+language: node_js
+services:
+  - docker
+cache:
+  directories:
+    - ~/.npm
+node_js:
+  - '15'
+git:
+  depth: 3
+script:
+  - npm run test
+  - npm run build
+  - docker build . -t=forecast-weather-web:travis-build-$TRAVIS_JOB_ID
+on:
+  branch: develop 
