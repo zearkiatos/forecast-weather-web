@@ -23,7 +23,7 @@
     "dev": "npm run start:watch",
     "build": "react-scripts build",
     "build:ci": "CI=false npm run build",
-    "test": "jest --env=jsdom",
+    "test": "jest --env=jsdom --config jest.config.js",
     "test:watch": "jest --env=jsdom --watch",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",

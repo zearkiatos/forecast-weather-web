@@ -1,6 +1,7 @@
 image: node:15-alpine
 stages:
   - install
+  - test
   - docker
   - build
   - deploy
@@ -21,6 +22,14 @@ install-dependencies:
     paths:
       - node_modules/
 
+test-app:
+  stage: test
+  dependencies:
+    - install-dependencies
+  script:
+    - echo "Testing the app 🧪"
+    - npm run test
+
 build-docker:
   image: docker:latest
   variables:
@@ -35,6 +44,7 @@ build-docker:
       - node_modules/
   dependencies:
     - install-dependencies
+    - test-app
   script:
     - echo "Build docker 🐳"
     - docker build . -t=forecast-weather-web:glb-${CI_PIPELINE_IID}
@@ -51,6 +61,7 @@ build-app:
       - node_modules/
   dependencies:
     - install-dependencies
+    - test-app
     - build-docker
   script:
     - echo "Deploy a review app 🛠"

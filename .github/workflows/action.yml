@@ -29,6 +29,8 @@ jobs:
         echo "ENVIRONMENT=${ENVIRONMENT}" > .env
       env:
         ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
+    - name: Test 🧪
+      run: npm run test
     - name: Build docker 🐳
       run: docker build . -t=forecast-weather-web:ghb-$GITHUB_RUN_NUMBER
     - name: Build
