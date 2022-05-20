@@ -1,10 +1,14 @@
 import React from "react";
 import { Typography } from "@mui/material";
 import PropTypes from "prop-types";
+import { WiCloud } from "react-icons/wi";
 
 const Weather = ({ temperature }) => (
   <div>
-    <Typography variant="h2">{temperature}</Typography>
+    <WiCloud></WiCloud>
+    <Typography display="inline" variant="h2">
+      {temperature}
+    </Typography>
   </div>
 );
 
