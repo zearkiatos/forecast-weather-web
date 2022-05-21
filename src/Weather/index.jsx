@@ -7,20 +7,20 @@ import {
   WiDayFog,
   WiDaySunny,
   WiRain,
-  WiSnowy
+  WiSnowy,
 } from "react-icons/wi";
 import { IconContext } from "react-icons";
 
 const stateByName = {
-  'CLOUD': WiCloud,
-  'CLOUDY': WiDayCloudy,
-  'FOG': WiDayFog,
-  'SUNNY': WiDaySunny,
-  'RAIN': WiRain,
-  'SNOWY': WiSnowy
+  CLOUD: <WiCloud />,
+  CLOUDY: <WiDayCloudy />,
+  FOG: <WiDayFog />,
+  SUNNY: <WiDaySunny />,
+  RAIN: <WiRain />,
+  SNOWY: <WiSnowy />,
 };
 
-const renderState = state => stateByName[state];
+const renderState = (state) => stateByName[state] || <WiDaySunny />;
 
 const Weather = ({ temperature, state }) => (
   <div>
