@@ -7,9 +7,10 @@ import {
   WiDayFog,
   WiDaySunny,
   WiRain,
-  WiSnowy,
+  WiSnow,
 } from "react-icons/wi";
 import { IconContext } from "react-icons";
+import WEATHERS from "./weathers";
 
 const stateByName = {
   CLOUD: <WiCloud />,
@@ -17,7 +18,7 @@ const stateByName = {
   FOG: <WiDayFog />,
   SUNNY: <WiDaySunny />,
   RAIN: <WiRain />,
-  SNOWY: <WiSnowy />,
+  SNOW: <WiSnow />,
 };
 
 const renderState = (state) => stateByName[state] || <WiDaySunny />;
@@ -25,7 +26,7 @@ const renderState = (state) => stateByName[state] || <WiDaySunny />;
 const Weather = ({ temperature, state }) => (
   <div>
     <IconContext.Provider value={{ size: "5em" }}>
-      <WiCloud />
+      {renderState(state)}
     </IconContext.Provider>
     <Typography display="inline" variant="h2">
       {temperature}
@@ -35,6 +36,7 @@ const Weather = ({ temperature, state }) => (
 
 Weather.propTypes = {
   temperature: PropTypes.number.isRequired,
+  state: PropTypes.string.isRequired,
 };
 
 export default Weather;
