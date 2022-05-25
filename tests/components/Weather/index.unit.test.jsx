@@ -2,8 +2,8 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import Weather from "../../src/Weather";
-import WEATHERS from '../../src/Weather/weathers';
+import Weather from "../../../src/components/Weather";
+import WEATHERS from '../../../src/components/Weather/weathers';
 
 describe("Unit test suite for Weather component", () => {
   test("Should render Weather component", async () => {

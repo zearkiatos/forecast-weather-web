@@ -2,7 +2,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import '@testing-library/jest-dom/extend-expect';
-import CityInfo from "../../src/CityInfo";
+import CityInfo from "../../../src/components/CityInfo";
 
 describe("Unit test suite for CityInfo component", () => {
   test("Should render CityInfo component", async () => {
