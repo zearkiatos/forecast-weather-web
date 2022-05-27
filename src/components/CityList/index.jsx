@@ -1,8 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
+import CityInfo from "../CityInfo";
+import Weather from "../Weather";
+
+const renderCity = ({ city, country }) => (
+  <li>
+    <CityInfo city={city} country={country} />
+    <Weather temperature={10} />
+  </li>
+);
 
 const CityList = ({ cities }) => {
-  return <div>CityList</div>;
+  return (
+    <ul>
+      {cities.map(city => renderCity(city))}
+    </ul>
+  );
 };
 
 CityList.propTypes = {
