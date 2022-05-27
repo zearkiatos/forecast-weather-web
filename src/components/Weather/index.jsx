@@ -10,7 +10,6 @@ import {
   WiSnow,
 } from "react-icons/wi";
 import { IconContext } from "react-icons";
-import WEATHERS from "./weathers";
 
 const stateByName = {
   CLOUD: <WiCloud />,
