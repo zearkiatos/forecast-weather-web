@@ -6,7 +6,7 @@ import Weather from "../Weather";
 const renderCity = ({ city, country }) => (
   <li>
     <CityInfo city={city} country={country} />
-    <Weather temperature={10} />
+    <Weather temperature={10} state="SUNNY" />
   </li>
 );
 
