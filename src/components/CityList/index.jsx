@@ -8,10 +8,10 @@ import WEATHERS from "../Weather/weathers";
 const renderCity = ({ city, country }) => (
   <li key={`${city}-${country}`}>
     <Grid container justify="center" alignItems="center">
-      <Grid item sm={8}>
+      <Grid item md={8} xs={12}>
         <CityInfo city={city} country={country} />
       </Grid>
-      <Grid item sm={4}>
+      <Grid item md={4} xs={12}>
         <Weather temperature={10} state={WEATHERS.SUNNY} />
       </Grid>
     </Grid>
