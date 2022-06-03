@@ -22,7 +22,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Install dependencies
-      run: npm install
+      run: npm install --production
     - name: Create .env
       run: |
         touch .env &&
@@ -43,7 +43,7 @@ jobs:
         FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
     - name: Build Web Application 
       run: |
-        npm run build:ci
+        npm run build
     - name: Firebase Setup
       uses: pocket-apps/action-setup-firebase@v2
       with:

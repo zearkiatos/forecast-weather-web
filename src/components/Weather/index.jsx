@@ -10,6 +10,7 @@ import {
   WiSnow,
 } from "react-icons/wi";
 import { IconContext } from "react-icons";
+import WEATHERS from "./weathers";
 
 const stateByName = {
   CLOUD: <WiCloud />,
@@ -33,9 +34,11 @@ const Weather = ({ temperature, state }) => (
   </div>
 );
 
+const stateValidValues = Object.values(WEATHERS);
+
 Weather.propTypes = {
   temperature: PropTypes.number.isRequired,
-  state: PropTypes.string.isRequired,
+  state: PropTypes.oneOf(stateValidValues).isRequired,
 };
 
 export default Weather;
