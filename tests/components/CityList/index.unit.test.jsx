@@ -8,7 +8,9 @@ import CityBuilder from "../../builders/cityBuilder";
 describe("Unit test suite for CityList component", () => {
   test("Should render CityList component", async () => {
     const cities = [new CityBuilder().build()];
-    const { findAllByRole } = render(<CityList cities={cities} />);
+    const { findAllByRole } = render(
+      <CityList cities={cities} onClickCity={jest.fn()} />
+    );
 
     const cityListComponent = await findAllByRole("listitem");
 
