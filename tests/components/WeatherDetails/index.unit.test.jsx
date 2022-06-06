@@ -7,12 +7,12 @@ import Weather from "../../../src/components/WeatherDetails";
 
 describe("Unit test suite for Weather Details component", () => {
   test("Should render Weather Details component", async () => {
-    const { findByText } = render(<Weather humidity={10} wind={10} />);
+    const { findByText } = render(<Weather humidity={80} wind={10} />);
 
-    const humidity = await findByText("Humidity: 10%");
-    const wind = await findByText("Wind: 10 km/h");
+    const humidity = await findByText(/80/);
+    const wind = await findByText(/10/);
 
-    expect(humidity).toHaveTextContent("10");
-    expect(wind).toHaveTextContent("10");
+    expect(humidity).toHaveTextContent("Humidity: 80%");
+    expect(wind).toHaveTextContent("Wind: 10 km/h");
   });
 });
