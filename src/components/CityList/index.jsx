@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Grid from "@mui/material/Grid";
 import CityInfo from "../CityInfo";
 import Weather from "../Weather";
-import WEATHERS from "../Weather/weathers";
+import WEATHERS from "../../utils/constants/weathers";
 
 const renderCity =
   (eventOnClickCity) =>

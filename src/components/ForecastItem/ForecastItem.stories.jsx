@@ -1,6 +1,6 @@
 import React from "react";
 import ForecastItem from ".";
-import WEATHERS from "../Weather/weathers";
+import WEATHERS from "../../utils/constants/weathers";
 
 export default {
   title: "ForecastItem",
