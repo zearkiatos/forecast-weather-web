@@ -25,7 +25,14 @@ const Forecast = ({ forecastItemList }) => {
 };
 
 Forecast.propTypes = {
-  forecastItemList: PropTypes.array.isRequired,
+  forecastItemList: PropTypes.arrayOf(
+    PropTypes.shape({
+      weekDay: PropTypes.string.isRequired,
+      hour: PropTypes.number.isRequired,
+      state: PropTypes.string.isRequired,
+      temperature: PropTypes.number.isRequired,
+    })
+  ).isRequired,
 };
 
 export default Forecast;
