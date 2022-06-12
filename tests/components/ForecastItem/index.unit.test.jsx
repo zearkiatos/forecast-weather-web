@@ -19,10 +19,10 @@ describe("Unit test suite for ForecastItem component", () => {
 
     const temperature = await findByText(/14/);
     const hour = await findByText(/19/);
-    const weekDay = await findByText(/FRIDAY/);
+    const weekDay = await findByText(/Friday/);
 
     expect(temperature).toHaveTextContent("14°");
     expect(hour).toHaveTextContent("19");
-    expect(weekDay).toHaveTextContent("FRIDAY");
+    expect(weekDay).toHaveTextContent("Friday");
   });
 });
