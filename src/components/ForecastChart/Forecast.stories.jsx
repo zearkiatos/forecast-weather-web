@@ -8,32 +8,32 @@ export default {
 
 const data = [
     {
-        "dayHour": "Jue 18",
+        "dayHour": "Thu 18",
         "min": 14,
         "max": 22,
     },
     {
-        "dayHour": "Vie 06",
+        "dayHour": "Fri 06",
         "min": 18,
         "max": 27,
     },
     {
-        "dayHour": "Vie 12",
+        "dayHour": "Fri 12",
         "min": 18,
         "max": 28,
     },
     {
-        "dayHour": "Vie 18",
+        "dayHour": "Fri 18",
         "min": 18,
         "max": 25,
     },
     {
-        "dayHour": "Sab 06",
+        "dayHour": "Sat 06",
         "min": 15,
         "max": 22,
     },
     {
-        "dayHour": "Sab 12",
+        "dayHour": "Sat 12",
         "min": 12,
         "max": 19,
     }
