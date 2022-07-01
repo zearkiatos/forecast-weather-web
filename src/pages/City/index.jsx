@@ -19,17 +19,24 @@ const City = () => {
   const data = forecastChartData;
   const forecastItemList = forecastItemListData;
   return (
-    <Grid container justifyContent="center" direction="column">
-      <Grid item xs={12}>
+    <Grid
+      container
+      justifyContent="space-around"
+      direction="column"
+      spacing={2}
+    >
+      <Grid
+        item
+        container
+        xs={12}
+        justifyContent="center"
+        alignItems="flex-end"
+      >
         <CityInfo city={city} country={country} />
       </Grid>
-      <Grid container item xs={12}>
-        <Grid item xs={8}>
-          <Weather state={state} temperature={temperature} />
-        </Grid>
-        <Grid item xs={4}>
-          <WeatherDetails humidity={humidity} wind={wind} />
-        </Grid>
+      <Grid container item xs={12} justifyContent="center">
+        <Weather state={state} temperature={temperature} />
+        <WeatherDetails humidity={humidity} wind={wind} />
       </Grid>
       <Grid item>
         <ForecastChart data={data} />

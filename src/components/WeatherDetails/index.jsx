@@ -5,8 +5,8 @@ import { Typography } from "@mui/material";
 const WeatherDetails = ({ humidity, wind }) => {
   return (
     <Fragment>
-      <Typography variant="h2">Humidity: {humidity}%</Typography>
-      <Typography variant="h2">Wind: {wind} km/h</Typography>
+      <Typography variant="h5">Humidity: {humidity}%</Typography>
+      <Typography variant="h5">Wind: {wind} km/h</Typography>
     </Fragment>
   );
 };
