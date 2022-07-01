@@ -4,7 +4,7 @@ import Grid from "@mui/material/Grid";
 import ForecastItem from "../ForecastItem";
 
 const renderForecast = ({ hour, weekDay, state, temperature }) => (
-  <Grid data-testid="forecast-item-container" item key={`${weekDay}${hour}`}>
+  <Grid container direction="column" xs={12} sm={6} lg={1} md={1} data-testid="forecast-item-container" item key={`${weekDay}${hour}`}>
     <ForecastItem
       hour={hour}
       weekDay={weekDay}
@@ -18,7 +18,7 @@ const Forecast = ({ forecastItemList }) => {
     renderForecast(forecast)
   );
   return (
-    <Grid container justify="center" alignItems="center">
+    <Grid container justifyContent="space-around" alignItems="center">
       {renderForecastItemList}
     </Grid>
   );
