@@ -12,7 +12,7 @@ describe("Unit test suite for CityList component", () => {
       <CityList cities={cities} onClickCity={jest.fn()} />
     );
 
-    const cityListComponent = await findAllByRole("listitem");
+    const cityListComponent = await findAllByRole("button");
 
     expect(cityListComponent).toHaveLength(1);
   });
@@ -31,7 +31,7 @@ describe("Unit test suite for CityList component", () => {
       <CityList cities={cities} onClickCity={clickOnItem} />
     );
 
-    const items = await findAllByRole("listitem");
+    const items = await findAllByRole("button");
     fireEvent.click(items[1]);
 
     expect(clickOnItem).toHaveBeenCalled();
