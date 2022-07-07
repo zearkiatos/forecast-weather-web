@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 import AppFrame from ".";
 
 export default {
@@ -6,4 +7,8 @@ export default {
   component: AppFrame,
 };
 
-export const AppFrameExample = () => <AppFrame />;
+export const AppFrameExample = () => (
+  <Router>
+    <AppFrame />
+  </Router>
+);
