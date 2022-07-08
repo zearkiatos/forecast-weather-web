@@ -11,6 +11,7 @@ git:
 script:
   - yarn test
   - yarn build
+  - yard test
   - docker build . -t=forecast-weather-web:travis-build-$TRAVIS_BUILD_NUMBER
 on:
   branch: develop 
