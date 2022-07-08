@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Paper } from "@mui/material";
 import CityList from "../../components/CityList";
+import AppFrame from "../../components/AppFrame";
 
 const citiesMock = [
   {
@@ -39,10 +41,11 @@ const Main = () => {
     navigate("/city");
   };
   return (
-    <div>
-      <h2>City list</h2>
-      <CityList cities={citiesMock} onClickCity={onClickHandler} />
-    </div>
+    <AppFrame>
+      <Paper elevation={3}>
+        <CityList cities={citiesMock} onClickCity={onClickHandler} />
+      </Paper>
+    </AppFrame>
   );
 };
 
