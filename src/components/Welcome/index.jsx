@@ -10,7 +10,7 @@ const Welcome = ({ children }) => {
       setVanta(1);
       console.log("Vanta was initialized");
     }
-  }, []);
+  }, [vanta]);
   return <div ref={myRefDiv}>Welcome</div>;
 };
 
