@@ -15,6 +15,8 @@ const Welcome = ({ children }) => {
         })
       );
     }
+
+    return () => vanta && vanta.destroy();
   }, [vanta]);
   return <div ref={myRefDiv}>Welcome</div>;
 };
