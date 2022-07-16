@@ -18,7 +18,11 @@ const Welcome = ({ children }) => {
 
     return () => vanta && vanta.destroy();
   }, [vanta]);
-  return <div className="full" ref={myRefDiv}>Welcome</div>;
+  return (
+    <div className="full" ref={myRefDiv}>
+      {children}
+    </div>
+  );
 };
 
 Welcome.propTypes = {
