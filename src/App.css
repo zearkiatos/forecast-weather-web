@@ -11,3 +11,8 @@ body {
     bottom: 0;
     right: 0;
 }
+
+.highlight {
+    height: 170px;
+    background-color: white;
+}
