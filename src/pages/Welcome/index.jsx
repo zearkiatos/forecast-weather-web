@@ -1,5 +1,6 @@
 import React from "react";
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography, Link } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { WiDaySunny } from "react-icons/wi";
 import WelcomeScreen from "../../components/Welcome";
@@ -36,6 +37,14 @@ const Welcome = () => {
               <Typography variant="h4" color="inherit">
                 Weather Application
               </Typography>
+              <Link
+                color="inherit"
+                aria-label="menu"
+                component={RouterLink}
+                to="/main"
+              >
+                Get into
+              </Link>
             </Grid>
           </Grid>
         </div>
