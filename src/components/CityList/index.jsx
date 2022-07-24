@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
@@ -9,7 +9,7 @@ import WEATHERS from "../../utils/constants/weathers";
 
 const renderCity =
   (eventOnClickCity) =>
-  ({ city, country }) =>
+  ({ city, country }, { temperature, state }) =>
     (
       <ListItem button key={`${city}-${country}`} onClick={eventOnClickCity}>
         <Grid container justifyContent="center" alignItems="center">
@@ -17,14 +17,17 @@ const renderCity =
             <CityInfo city={city} country={country} />
           </Grid>
           <Grid item md={3} xs={12}>
-            <Weather temperature={10} state={WEATHERS.SUNNY} />
+            <Weather temperature={temperature} state={state} />
           </Grid>
         </Grid>
       </ListItem>
     );
 
 const CityList = ({ cities, onClickCity }) => {
-  return <List>{cities.map((city) => renderCity(onClickCity)(city))}</List>;
+  const weather = { temperature: 10, state: WEATHERS.SUNNY };
+  return (
+    <List>{cities.map((city) => renderCity(onClickCity)(city, weather))}</List>
+  );
 };
 
 CityList.propTypes = {
