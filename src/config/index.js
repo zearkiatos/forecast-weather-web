@@ -12,6 +12,7 @@ const config = {
     API_BASE_URL: process.env.OPEN_WEATHER_MAP_API_BASE_URL,
     API_KEY: process.env.OPEN_WEATHER_MAP_API_KEY,
     DEFAULT_CITY: process.env.OPEN_WEATHER_MAP_DEFAULT_CITY,
+    VERSION: process.env.OPEN_WEATHER_MAP_VERSION
   },
 };
 
