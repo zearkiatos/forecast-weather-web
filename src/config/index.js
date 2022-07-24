@@ -8,6 +8,11 @@ const config = {
     MESSAGING_SENDER_ID: process.env.FIREBASE_MESSAGING_SENDER_ID,
     APP_ID: process.env.FIREBASE_APP_ID,
   },
+  OPEN_WEATHER_MAP: {
+    API_BASE_URL: process.env.OPEN_WEATHER_MAP_API_BASE_URL,
+    API_KEY: process.env.OPEN_WEATHER_MAP_API_KEY,
+    DEFAULT_CITY: process.env.OPEN_WEATHER_MAP_DEFAULT_CITY,
+  },
 };
 
 export default config;
