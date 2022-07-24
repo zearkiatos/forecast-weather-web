@@ -9,7 +9,7 @@ import WEATHERS from "../../utils/constants/weathers";
 
 const renderCity =
   (eventOnClickCity) =>
-  ({ city, country, weather: { temperature, state } }) =>
+  ({ city, country }, { temperature, state }) =>
     (
       <ListItem button key={`${city}-${country}`} onClick={eventOnClickCity}>
         <Grid container justifyContent="center" alignItems="center">
@@ -24,7 +24,10 @@ const renderCity =
     );
 
 const CityList = ({ cities, onClickCity }) => {
-  return <List>{cities.map((city) => renderCity(onClickCity)(city))}</List>;
+  const weather = { temperature: 10, state: WEATHERS.SUNNY };
+  return (
+    <List>{cities.map((city) => renderCity(onClickCity)(city, weather))}</List>
+  );
 };
 
 CityList.propTypes = {
