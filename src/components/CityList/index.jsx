@@ -9,24 +9,41 @@ import WEATHERS from "../../utils/constants/weathers";
 
 const renderCity =
   (eventOnClickCity) =>
-  ({ city, country }, { temperature, state }) =>
-    (
+  ({ city, country }, weather) => {
+    return (
       <ListItem button key={`${city}-${country}`} onClick={eventOnClickCity}>
         <Grid container justifyContent="center" alignItems="center">
           <Grid item md={9} xs={12}>
             <CityInfo city={city} country={country} />
           </Grid>
           <Grid item md={3} xs={12}>
-            <Weather temperature={temperature} state={state} />
+            {weather ? (
+              <Weather
+                temperature={weather.temperature}
+                state={weather.state}
+              />
+            ) : (
+              "Data not found"
+            )}
           </Grid>
         </Grid>
       </ListItem>
     );
+  };
 
 const CityList = ({ cities, onClickCity }) => {
+  const [allWeather, setAllWeather] = useState({});
+  useEffect(() => {}, []);
   const weather = { temperature: 10, state: WEATHERS.SUNNY };
   return (
-    <List>{cities.map((city) => renderCity(onClickCity)(city, weather))}</List>
+    <List>
+      {cities.map((city) =>
+        renderCity(onClickCity)(
+          city,
+          allWeather[`${city.city}-${city.country}`]
+        )
+      )}
+    </List>
   );
 };
 
