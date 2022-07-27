@@ -27,8 +27,16 @@ jobs:
       run: |
         touch .env &&
         echo "ENVIRONMENT=${ENVIRONMENT}" > .env
+        echo "OPEN_WEATHER_MAP_API_BASE_URL=${OPEN_WEATHER_MAP_API_BASE_URL}" >> .env
+        echo "OPEN_WEATHER_MAP_API_KEY=${OPEN_WEATHER_MAP_API_KEY}" >> .env
+        echo "OPEN_WEATHER_MAP_DEFAULT_CITY=${OPEN_WEATHER_MAP_DEFAULT_CITY}" >> .env
+        echo "OPEN_WEATHER_MAP_VERSION=${OPEN_WEATHER_MAP_VERSION}" >> .env
       env:
         ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
+        OPEN_WEATHER_MAP_API_BASE_URL: ${{secrets.OPEN_WEATHER_MAP_API_BASE_URL}}
+        OPEN_WEATHER_MAP_API_KEY: ${{secrets.OPEN_WEATHER_MAP_API_KEY}}
+        OPEN_WEATHER_MAP_DEFAULT_CITY: ${{secrets.OPEN_WEATHER_MAP_DEFAULT_CITY}}
+        OPEN_WEATHER_MAP_VERSION: ${{secrets.OPEN_WEATHER_MAP_VERSION}}
     - name: Test 🧪
       run: npm run test
     - name: Build docker 🐳

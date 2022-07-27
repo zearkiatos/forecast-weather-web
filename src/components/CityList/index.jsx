@@ -3,9 +3,11 @@ import PropTypes from "prop-types";
 import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
+import axios from "axios";
 import CityInfo from "../CityInfo";
 import Weather from "../Weather";
 import WEATHERS from "../../utils/constants/weathers";
+import config from "../../config";
 
 const renderCity =
   (eventOnClickCity) =>
@@ -33,7 +35,16 @@ const renderCity =
 
 const CityList = ({ cities, onClickCity }) => {
   const [allWeather, setAllWeather] = useState({});
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const getWeather = (city) => {
+      axios.get(
+        `${config.OPEN_WEATHER_MAP.API_BASE_URL}/data/${city}/weather?q=${config.OPEN_WEATHER_MAP.DEFAULT_CITY}&${config.OPEN_WEATHER_MAP.API_KEY}`
+      );
+    };
+    cities.forEach((city, country) => {
+      getWeather(city);
+    });
+  }, [cities]);
   const weather = { temperature: 10, state: WEATHERS.SUNNY };
   return (
     <List>
