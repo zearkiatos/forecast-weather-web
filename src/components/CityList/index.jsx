@@ -40,12 +40,13 @@ const CityList = ({ cities, onClickCity }) => {
       `${config.OPEN_WEATHER_MAP.API_BASE_URL}/data/${config.OPEN_WEATHER_MAP.VERSION}/weather?q=${city.city}&appid=${config.OPEN_WEATHER_MAP.API_KEY}`
     );
     const temperature = data.main.temp;
-    const state = 'SUNNY';
+    const state = WEATHERS.SUNNY;
     
   };
   useEffect(() => {
     cities.forEach((city, country) => {
       getWeather(city);
+      setAllWeather({...allWeather, [`${city}-${country}`]: {}});
     });
   }, [cities]);
   const weather = { temperature: 10, state: WEATHERS.SUNNY };
