@@ -3,8 +3,18 @@ import PropTypes from "prop-types";
 import Grid from "@mui/material/Grid";
 import ForecastItem from "../ForecastItem";
 
-const renderForecast = ({ hour, weekDay, state, temperature }) => (
-  <Grid container direction="column" xs={12} sm={12} lg={1} md={1} data-testid="forecast-item-container" item key={`${weekDay}${hour}`}>
+const renderForecast = ({ hour, weekDay, state, temperature }, index) => (
+  <Grid
+    container
+    direction="column"
+    xs={12}
+    sm={12}
+    lg={1}
+    md={1}
+    data-testid="forecast-item-container"
+    item
+    key={`${index}`}
+  >
     <ForecastItem
       hour={hour}
       weekDay={weekDay}
@@ -14,8 +24,8 @@ const renderForecast = ({ hour, weekDay, state, temperature }) => (
   </Grid>
 );
 const Forecast = ({ forecastItemList }) => {
-  const renderForecastItemList = forecastItemList.map((forecast) =>
-    renderForecast(forecast)
+  const renderForecastItemList = forecastItemList.map((forecast,index) =>
+    renderForecast(forecast,index)
   );
   return (
     <Grid container justifyContent="space-around" alignItems="center">
