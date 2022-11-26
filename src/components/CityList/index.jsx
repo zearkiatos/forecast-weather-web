@@ -43,7 +43,14 @@ const CityList = ({ cities, onClickCity }) => {
     const state = WEATHERS.SUNNY;
     const propertyName = `${city}-${country}`;
     const propertyValue = { temperature, state };
-    setAllWeather({ ...allWeather, [propertyName]: propertyValue });
+    setAllWeather((allWeather) => {
+      const result = {
+        ...allWeather,
+        [propertyName]: propertyValue,
+      };
+      console.log("allWeather [result]: ", result);
+      return result;
+    });
   };
   useEffect(() => {
     cities.forEach((city, country) => {
