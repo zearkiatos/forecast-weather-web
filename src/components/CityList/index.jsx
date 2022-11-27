@@ -37,12 +37,13 @@ const CityList = ({ cities, onClickCity }) => {
   const [allWeather, setAllWeather] = useState({});
   const getWeather = async (city, country) => {
     const { data } = await axios.get(
-      `${config.OPEN_WEATHER_MAP.API_BASE_URL}/data/${config.OPEN_WEATHER_MAP.VERSION}/weather?q=${city.city}&appid=${config.OPEN_WEATHER_MAP.API_KEY}`
+      `${config.OPEN_WEATHER_MAP.API_BASE_URL}/data/${config.OPEN_WEATHER_MAP.VERSION}/weather?q=${city}&appid=${config.OPEN_WEATHER_MAP.API_KEY}`
     );
     const temperature = data.main.temp;
     const state = WEATHERS.SUNNY;
     const propertyName = `${city}-${country}`;
     const propertyValue = { temperature, state };
+    console.log("propertyName", propertyName);
     setAllWeather((allWeather) => {
       const result = {
         ...allWeather,
@@ -53,7 +54,7 @@ const CityList = ({ cities, onClickCity }) => {
     });
   };
   useEffect(() => {
-    cities.forEach((city, country) => {
+    cities.forEach(({ city, country }) => {
       getWeather(city, country);
     });
   }, [cities]);
