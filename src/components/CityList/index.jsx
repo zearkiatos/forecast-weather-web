@@ -35,27 +35,25 @@ const renderCity =
 
 const CityList = ({ cities, onClickCity }) => {
   const [allWeather, setAllWeather] = useState({});
-  const getWeather = async (city, country) => {
+  const getWeather = async (city, country, countryCode) => {
     const { data } = await axios.get(
-      `${config.OPEN_WEATHER_MAP.API_BASE_URL}/data/${config.OPEN_WEATHER_MAP.VERSION}/weather?q=${city}&appid=${config.OPEN_WEATHER_MAP.API_KEY}`
+      `${config.OPEN_WEATHER_MAP.API_BASE_URL}/data/${config.OPEN_WEATHER_MAP.VERSION}/weather?q=${city},${countryCode}&appid=${config.OPEN_WEATHER_MAP.API_KEY}`
     );
     const temperature = data.main.temp;
     const state = WEATHERS.SUNNY;
     const propertyName = `${city}-${country}`;
     const propertyValue = { temperature, state };
-    console.log("propertyName", propertyName);
     setAllWeather((allWeather) => {
       const result = {
         ...allWeather,
         [propertyName]: propertyValue,
       };
-      console.log("allWeather [result]: ", result);
       return result;
     });
   };
   useEffect(() => {
-    cities.forEach(({ city, country }) => {
-      getWeather(city, country);
+    cities.forEach(({ city, country, countryCode }) => {
+      getWeather(city, country, countryCode);
     });
   }, [cities]);
   return (
@@ -75,6 +73,7 @@ CityList.propTypes = {
     PropTypes.shape({
       city: PropTypes.string.isRequired,
       country: PropTypes.string.isRequired,
+      countryCode: PropTypes.string.isRequired,
     })
   ).isRequired,
   onClickCity: PropTypes.func.isRequired,
