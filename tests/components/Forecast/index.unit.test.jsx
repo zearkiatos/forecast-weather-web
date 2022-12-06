@@ -13,7 +13,7 @@ describe("Unit test suite for Forecast component", () => {
       new ForecastBuilder().build(),
       new ForecastBuilder()
         .withHour(18)
-        .withState(WEATHERS.SUNNY)
+        .withState(WEATHERS.CLEAR)
         .withTemperature(17)
         .withWeekDay(DAYS_OF_WEEK.THURSDAY)
         .build(),
@@ -25,7 +25,7 @@ describe("Unit test suite for Forecast component", () => {
         .build(),
       new ForecastBuilder()
         .withHour(12)
-        .withState(WEATHERS.FOG)
+        .withState(WEATHERS.DRIZZLE)
         .withTemperature(18)
         .withWeekDay(DAYS_OF_WEEK.FRIDAY)
         .build(),

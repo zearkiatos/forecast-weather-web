@@ -10,7 +10,7 @@ export default {
 
 const forecastItemList = [{
     hour: 18,
-    state: WEATHERS.SUNNY,
+    state: WEATHERS.CLEAR,
     temperature: 17,
     weekDay: DAYS_OF_WEEK.MONDAY,
 },
@@ -22,7 +22,7 @@ const forecastItemList = [{
 },
 {
     hour: 12,
-    state: WEATHERS.FOG,
+    state: WEATHERS.DRIZZLE,
     temperature: 18,
     weekDay: DAYS_OF_WEEK.FRIDAY,
 },
