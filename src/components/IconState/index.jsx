@@ -16,6 +16,7 @@ import WEATHERS from "../../utils/constants/weathers";
 
 const stateByName = {
   CLOUD: <WiCloud />,
+  CLOUDS: <WiCloud />,
   CLOUDY: <WiDayCloudy />,
   FOG: <WiDayFog />,
   SUNNY: <WiDaySunny />,

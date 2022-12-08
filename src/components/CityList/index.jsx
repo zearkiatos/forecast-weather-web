@@ -40,16 +40,13 @@ const CityList = ({ cities, onClickCity }) => {
       `${config.OPEN_WEATHER_MAP.API_BASE_URL}/data/${config.OPEN_WEATHER_MAP.VERSION}/weather?q=${city},${countryCode}&appid=${config.OPEN_WEATHER_MAP.API_KEY}`
     );
     const temperature = data.main.temp;
-    const state = WEATHERS.SUNNY;
+    const state = WEATHERS[data.weather[0].main.toUpperCase()];
     const propertyName = `${city}-${country}`;
     const propertyValue = { temperature, state };
-    setAllWeather((allWeather) => {
-      const result = {
-        ...allWeather,
-        [propertyName]: propertyValue,
-      };
-      return result;
-    });
+    setAllWeather((allWeather) => ({
+      ...allWeather,
+      [propertyName]: propertyValue,
+    }));
   };
   useEffect(() => {
     cities.forEach(({ city, country, countryCode }) => {

@@ -35,13 +35,13 @@ describe("Unit test suite for Forecast component", () => {
         .withWeekDay(DAYS_OF_WEEK.FRIDAY)
         .build(),
       new ForecastBuilder()
-        .withHour(14)
+        .withHour(6)
         .withState(WEATHERS.RAIN)
         .withTemperature(17)
         .withWeekDay(DAYS_OF_WEEK.SATURDAY)
         .build(),
       new ForecastBuilder()
-        .withHour(14)
+        .withHour(12)
         .withState(WEATHERS.RAIN)
         .withTemperature(17)
         .withWeekDay(DAYS_OF_WEEK.SATURDAY)
