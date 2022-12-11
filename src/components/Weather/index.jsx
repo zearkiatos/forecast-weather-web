@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography } from "@mui/material";
+import { Typography, Skeleton } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import PropTypes from "prop-types";
 import { IconContext } from "react-icons";
@@ -15,11 +15,19 @@ const Weather = ({ temperature, state }) => (
     spacing="1"
   >
     <IconContext.Provider value={{ size: "6em" }}>
-      <IconState state={state} />
+      {state ? (
+        <IconState state={state} />
+      ) : (
+        <Skeleton variant="circular" height={80} width={80}></Skeleton>
+      )}
     </IconContext.Provider>
-    <Typography display="inline" variant="h2">
-      {temperature}
-    </Typography>
+    {temperature ? (
+      <Typography display="inline" variant="h2">
+        {temperature}
+      </Typography>
+    ) : (
+      <Skeleton variant="rectangular" height={80} width={80}></Skeleton>
+    )}
   </Grid>
 );
 

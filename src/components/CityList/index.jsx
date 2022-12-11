@@ -4,7 +4,7 @@ import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import axios from "axios";
-import convertUnits from 'convert-units';
+import convertUnits from "convert-units";
 import CityInfo from "../CityInfo";
 import Weather from "../Weather";
 import WEATHERS from "../../utils/constants/weathers";
@@ -20,14 +20,10 @@ const renderCity =
             <CityInfo city={city} country={country} />
           </Grid>
           <Grid item md={3} xs={12}>
-            {weather ? (
-              <Weather
-                temperature={weather.temperature}
-                state={weather.state}
-              />
-            ) : (
-              "Data not found"
-            )}
+            <Weather
+              temperature={weather && weather.temperature}
+              state={weather && weather.state}
+            />
           </Grid>
         </Grid>
       </ListItem>
@@ -40,8 +36,10 @@ const CityList = ({ cities, onClickCity }) => {
     const { data } = await axios.get(
       `${config.OPEN_WEATHER_MAP.API_BASE_URL}/data/${config.OPEN_WEATHER_MAP.VERSION}/weather?q=${city},${countryCode}&appid=${config.OPEN_WEATHER_MAP.API_KEY}`
     );
-    
-    const temperature = Number(convertUnits(data.main.temp).from('K').to("C")).toFixed(0);
+
+    const temperature = Number(
+      convertUnits(data.main.temp).from("K").to("C")
+    ).toFixed(0);
     const state = WEATHERS[data.weather[0].main.toUpperCase()];
     const propertyName = `${city}-${country}`;
     const propertyValue = { temperature, state };
