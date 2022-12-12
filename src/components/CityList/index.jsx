@@ -33,20 +33,37 @@ const renderCity =
 const CityList = ({ cities, onClickCity }) => {
   const [allWeather, setAllWeather] = useState({});
   const getWeather = async (city, country, countryCode) => {
-    const { data } = await axios.get(
-      `${config.OPEN_WEATHER_MAP.API_BASE_URL}/data/${config.OPEN_WEATHER_MAP.VERSION}/weather?q=${city},${countryCode}&appid=${config.OPEN_WEATHER_MAP.API_KEY}`
-    );
+    try {
+      const response = await axios.get(
+        `${config.OPEN_WEATHER_MAP.API_BASE_URL}/data/${config.OPEN_WEATHER_MAP.VERSION}/weather?q=${city},${countryCode}&appid=${config.OPEN_WEATHER_MAP.API_KEY}`
+      );
 
-    const temperature = Number(
-      convertUnits(data.main.temp).from("K").to("C")
-    ).toFixed(0);
-    const state = WEATHERS[data.weather[0].main.toUpperCase()];
-    const propertyName = `${city}-${country}`;
-    const propertyValue = { temperature, state };
-    setAllWeather((allWeather) => ({
-      ...allWeather,
-      [propertyName]: propertyValue,
-    }));
+      if (response) {
+        const { data, status } = response;
+
+        console.log('data', data);
+        console.log('status', status);
+
+        const temperature = Number(
+          convertUnits(data.main.temp).from("K").to("C")
+        ).toFixed(0);
+        const state = WEATHERS[data.weather[0].main.toUpperCase()];
+        const propertyName = `${city}-${country}`;
+        const propertyValue = { temperature, state };
+        setAllWeather((allWeather) => ({
+          ...allWeather,
+          [propertyName]: propertyValue,
+        }));
+      }
+      else if (response.request) {
+        console.error("Server unavailable");
+      }
+      else {
+        console.error("Unknow error");
+      }
+    } catch (ex) {
+      console.error(`Error ${ex.message}`);
+    }
   };
   useEffect(() => {
     cities.forEach(({ city, country, countryCode }) => {
