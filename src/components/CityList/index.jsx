@@ -41,10 +41,7 @@ const CityList = ({ cities, onClickCity }) => {
       );
 
       if (response) {
-        const { data, status } = response;
-
-        console.log("data", data);
-        console.log("status", status);
+        const { data } = response;
 
         const temperature = Number(
           convertUnits(data.main.temp).from("K").to("C")
@@ -56,17 +53,16 @@ const CityList = ({ cities, onClickCity }) => {
           ...allWeather,
           [propertyName]: propertyValue,
         }));
-      } else if (response.request) {
-        setError("There was ocurred an error in the weather server");
-        console.error("Server unavailable");
-      } else {
-        setError("There was an unknow error");
-        console.error("Unknow error");
       }
     } catch (ex) {
-      const errorMessage = `Error ${ex.message}`;
-      setError(errorMessage);
-      console.error(errorMessage);
+      if (ex.response) {
+        setError("There was ocurred an error in the weather server");
+      } else if (ex.request) {
+        setError("Verify your internet connection");
+      } else {
+        const errorMessage = `Error ${ex.message}`;
+        setError(errorMessage);
+      }
     }
   };
   useEffect(() => {
