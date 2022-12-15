@@ -38,6 +38,7 @@ const citiesMock = [
   {
     city: "Ciudad de Mexico",
     country: "Mexico",
+    countryCode: "MX"
   },
 ];
 const Main = () => {
