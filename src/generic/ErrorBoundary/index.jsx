@@ -1,8 +1,14 @@
 import React, { Component } from "react";
 
 class ErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activated: false
+    }
+  }
   isActivated = () => {
-    const { activated } = this.props;
+    const { activated } = this.state;
     return activated ? "Activated" : "Not Activated";
   };
   render() {
