@@ -16,6 +16,9 @@ class ErrorBoundary extends Component {
       activated: true,
     });
   };
+  componentDidMount() {
+    console.log('The component has been mounted');
+  }
   render() {
     return (
       <div>
