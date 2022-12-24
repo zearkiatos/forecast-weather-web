@@ -17,7 +17,12 @@ class ErrorBoundary extends Component {
     });
   };
   componentDidMount() {
-    console.log('The component has been mounted');
+    console.log("The component has been mounted");
+  }
+  componentDidUpdate(prevProps, prevState) {
+    console.log(`Preview state: ${prevState.activated}`);
+    console.log(`New state: ${this.state.activated}`);
+    console.log("The component has been updated");
   }
   render() {
     return (
