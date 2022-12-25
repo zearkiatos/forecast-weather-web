@@ -24,6 +24,12 @@ class ErrorBoundary extends Component {
     console.log(`New state: ${this.state.activated}`);
     console.log("The component has been updated");
   }
+
+  componentWillUnmount() {
+    console.log("The component have been unmount");
+  }
+
+
   render() {
     return (
       <div>
