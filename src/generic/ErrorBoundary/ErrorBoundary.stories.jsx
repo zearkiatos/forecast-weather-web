@@ -13,7 +13,7 @@ const ComponentWithError = () => <h1>{prop.hello}</h1>;
 
 
 export const ErrorBoundaryExample = () => (
-  <ErrorBoundary greet="Hello" />
+  <ErrorBoundary />
 );
 
 export const ErrorBoundaryWithErrorExample = () => (
