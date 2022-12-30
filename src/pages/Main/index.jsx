@@ -8,44 +8,46 @@ const citiesMock = [
   {
     city: "New York",
     country: "United States",
-    countryCode: "US"
+    countryCode: "US",
   },
   {
     city: "Santiago de Chile",
     country: "Chile",
-    countryCode: "CL"
+    countryCode: "CL",
   },
   {
     city: "Puerto Cabello",
     country: "Venezuela",
-    countryCode: "VE"
+    countryCode: "VE",
   },
   {
     city: "Buenos Aires",
     country: "Argentina",
-    countryCode: "AR"
+    countryCode: "AR",
   },
   {
     city: "Bogota",
     country: "Colombia",
-    countryCode: "CO"
+    countryCode: "CO",
   },
   {
     city: "Madrid",
     country: "Spain",
-    countryCode: "ES"
+    countryCode: "ES",
   },
   {
     city: "Ciudad de Mexico",
     country: "Mexico",
-    countryCode: "MX"
+    countryCode: "MX",
   },
 ];
 const Main = () => {
   const navigate = useNavigate();
 
-  const onClickHandler = () => {
-    navigate("/city");
+  const onClickHandler = (city, countryCode) => {
+    console.log("city", city);
+    console.log("countryCode", countryCode);
+    // navigate("/city");
   };
   return (
     <AppFrame>
