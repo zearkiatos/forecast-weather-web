@@ -45,9 +45,7 @@ const Main = () => {
   const navigate = useNavigate();
 
   const onClickHandler = (city, countryCode) => {
-    console.log("city", city);
-    console.log("countryCode", countryCode);
-    // navigate("/city");
+    navigate(`/city/${countryCode}/${city}`);
   };
   return (
     <AppFrame>
