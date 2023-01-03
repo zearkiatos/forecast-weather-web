@@ -1,5 +1,6 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
+import { useParams } from "react-router-dom";
 import CityInfo from "../../components/CityInfo";
 import Weather from "../../components/Weather";
 import WeatherDetails from "../../components/WeatherDetails";
@@ -11,6 +12,8 @@ import forecastItemListData from "../../data/mocks/forecastItemListData";
 import AppFrame from "../../components/AppFrame";
 
 const City = () => {
+  const params = useParams();
+  console.log(params);
   const city = "Puerto Cabello";
   const country = "Venezuela";
   const state = WEATHERS.CLOUDY;
