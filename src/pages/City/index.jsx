@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import { useParams } from "react-router-dom";
 import CityInfo from "../../components/CityInfo";
@@ -12,6 +12,8 @@ import forecastItemListData from "../../data/mocks/forecastItemListData";
 import AppFrame from "../../components/AppFrame";
 
 const City = () => {
+  const [data, setData] = useState(null);
+  const [forecastItemList, setForecastItemList] = useState(null);
   const params = useParams();
   console.log(params);
   const city = "Puerto Cabello";
@@ -20,8 +22,12 @@ const City = () => {
   const temperature = 20;
   const humidity = 80;
   const wind = 5;
-  const data = forecastChartData;
-  const forecastItemList = forecastItemListData;
+  // const data = forecastChartData;
+  // const forecastItemList = forecastItemListData;
+  useEffect(() => {
+    setData(forecastChartData);
+    setForecastItemList(forecastItemListData);
+  }, [data, forecastItemList]);
   return (
     <AppFrame>
       <Grid
@@ -44,10 +50,10 @@ const City = () => {
           <WeatherDetails humidity={humidity} wind={wind} />
         </Grid>
         <Grid item>
-          <ForecastChart data={data} />
+          {data && <ForecastChart data={data} />}
         </Grid>
         <Grid item>
-          <Forecast forecastItemList={forecastItemList} />
+          {forecastItemList && <Forecast forecastItemList={forecastItemList} />}
         </Grid>
       </Grid>
     </AppFrame>
