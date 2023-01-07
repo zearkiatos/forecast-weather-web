@@ -13,6 +13,7 @@
     "axios": "^0.27.2",
     "convert-units": "^2.3.4",
     "firebase": "^9.8.1",
+    "moment": "^2.29.4",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-icons": "^4.3.1",
