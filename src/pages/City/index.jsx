@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 import CityInfo from "../../components/CityInfo";
 import Weather from "../../components/Weather";
 import WeatherDetails from "../../components/WeatherDetails";
@@ -10,23 +11,27 @@ import WEATHERS from "../../utils/constants/weathers";
 import forecastChartData from "../../data/mocks/forecastChartData";
 import forecastItemListData from "../../data/mocks/forecastItemListData";
 import AppFrame from "../../components/AppFrame";
+import config from "../../config";
 
 const City = () => {
   const [data, setData] = useState(null);
   const [forecastItemList, setForecastItemList] = useState(null);
-  const params = useParams();
-  console.log(params);
-  const city = "Puerto Cabello";
-  const country = "Venezuela";
+  const { city, countryCode } = useParams();
   const state = WEATHERS.CLOUDY;
   const temperature = 20;
   const humidity = 80;
   const wind = 5;
-  // const data = forecastChartData;
-  // const forecastItemList = forecastItemListData;
+  const getForecast = async () => {
+    const url = `${config.OPEN_WEATHER_MAP.API_BASE_URL}/data/${config.OPEN_WEATHER_MAP.VERSION}/forecast?q=${city},${countryCode}&appid=${config.OPEN_WEATHER_MAP.API_KEY}`;
+    try {
+      const { data } = await axios.get(url);
+      console.log(data);
+    } catch (ex) {
+      console.error(`Error: ${ex.message}`);
+    }
+  };
   useEffect(() => {
-    setData(forecastChartData);
-    setForecastItemList(forecastItemListData);
+    getForecast();
   }, [data, forecastItemList]);
   return (
     <AppFrame>
@@ -43,15 +48,13 @@ const City = () => {
           justifyContent="center"
           alignItems="flex-end"
         >
-          <CityInfo city={city} country={country} />
+          <CityInfo city={city} country={countryCode} />
         </Grid>
         <Grid container item xs={12} justifyContent="center">
           <Weather state={state} temperature={temperature} />
           <WeatherDetails humidity={humidity} wind={wind} />
         </Grid>
-        <Grid item>
-          {data && <ForecastChart data={data} />}
-        </Grid>
+        <Grid item>{data && <ForecastChart data={data} />}</Grid>
         <Grid item>
           {forecastItemList && <Forecast forecastItemList={forecastItemList} />}
         </Grid>
