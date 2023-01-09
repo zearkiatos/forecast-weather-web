@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import moment from "moment";
 import CityInfo from "../../components/CityInfo";
 import Weather from "../../components/Weather";
 import WeatherDetails from "../../components/WeatherDetails";
@@ -26,6 +27,17 @@ const City = () => {
     try {
       const { data } = await axios.get(url);
       console.log(data);
+      const daysAhead = [0, 1, 2, 3, 4, 5];
+      const days = daysAhead.map((day) => moment().add(day, "d"));
+      const date = days.map((day) => {
+        return {
+          dayHour: day.format("ddd"),
+          min: 10,
+          max: 30,
+        };
+      });
+      setData(date);
+      setForecastItemList(forecastItemListData);
     } catch (ex) {
       console.error(`Error: ${ex.message}`);
     }
