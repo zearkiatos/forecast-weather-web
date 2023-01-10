@@ -3,6 +3,7 @@ import Grid from "@mui/material/Grid";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
+import "moment/locale/es";
 import CityInfo from "../../components/CityInfo";
 import Weather from "../../components/Weather";
 import WeatherDetails from "../../components/WeatherDetails";
