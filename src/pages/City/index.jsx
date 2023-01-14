@@ -37,10 +37,11 @@ const City = () => {
         });
         console.log("dayOfYear", day.dayOfYear());
         console.log("tempObjectArray", tempObjectArray);
+        const temps = tempObjectArray.map((item) => item.main.temp);
         return {
           dayHour: day.format("ddd"),
-          min: 10,
-          max: 30,
+          min: Math.min(...temps),
+          max: Math.max(...temps),
         };
       });
       setData(date);
