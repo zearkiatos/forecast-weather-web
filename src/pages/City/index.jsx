@@ -3,6 +3,7 @@ import Grid from "@mui/material/Grid";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
+import convertUnits from "convert-units";
 import "moment/locale/es";
 import CityInfo from "../../components/CityInfo";
 import Weather from "../../components/Weather";
@@ -10,7 +11,6 @@ import WeatherDetails from "../../components/WeatherDetails";
 import ForecastChart from "../../components/ForecastChart";
 import Forecast from "../../components/Forecast";
 import WEATHERS from "../../utils/constants/weathers";
-import forecastChartData from "../../data/mocks/forecastChartData";
 import forecastItemListData from "../../data/mocks/forecastItemListData";
 import AppFrame from "../../components/AppFrame";
 import config from "../../config";
@@ -38,10 +38,13 @@ const City = () => {
         console.log("dayOfYear", day.dayOfYear());
         console.log("tempObjectArray", tempObjectArray);
         const temps = tempObjectArray.map((item) => item.main.temp);
+        const toCelsius = (temp) =>
+          Number(convertUnits(temp).from("K").to("C").toFixed());
+        console.log(temps);
         return {
           dayHour: day.format("ddd"),
-          min: Math.min(...temps),
-          max: Math.max(...temps),
+          min: toCelsius(Math.min(...temps)),
+          max: toCelsius(Math.max(...temps)),
         };
       });
       setData(date);
