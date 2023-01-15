@@ -24,6 +24,8 @@ const City = () => {
   const humidity = 80;
   const wind = 5;
   const getForecast = async () => {
+    const toCelsius = (temp) =>
+      Number(convertUnits(temp).from("K").to("C").toFixed());
     const url = `${config.OPEN_WEATHER_MAP.API_BASE_URL}/data/${config.OPEN_WEATHER_MAP.VERSION}/forecast?q=${city},${countryCode}&appid=${config.OPEN_WEATHER_MAP.API_KEY}`;
     try {
       const { data } = await axios.get(url);
@@ -38,8 +40,7 @@ const City = () => {
         console.log("dayOfYear", day.dayOfYear());
         console.log("tempObjectArray", tempObjectArray);
         const temps = tempObjectArray.map((item) => item.main.temp);
-        const toCelsius = (temp) =>
-          Number(convertUnits(temp).from("K").to("C").toFixed());
+
         console.log(temps);
         return {
           dayHour: day.format("ddd"),
@@ -48,7 +49,17 @@ const City = () => {
         };
       });
       setData(date);
-      setForecastItemList(forecastItemListData);
+      const interval = [4, 8, 12, 16, 20, 24];
+
+      const forecastItemList = data.list
+        .filter((item, index) => interval.includes(index))
+        .map((item) => ({
+          hour: moment.unix(item.dt).hour(),
+          weekDay: moment.unix(item.dt).format("dddd"),
+          state: item.weather[0].main.toUpperCase(),
+          temperature: toCelsius(item.main.temp),
+        }));
+      setForecastItemList(forecastItemList);
     } catch (ex) {
       console.error(`Error: ${ex.message}`);
     }
