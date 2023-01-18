@@ -11,7 +11,6 @@ import WeatherDetails from "../../components/WeatherDetails";
 import ForecastChart from "../../components/ForecastChart";
 import Forecast from "../../components/Forecast";
 import WEATHERS from "../../utils/constants/weathers";
-import forecastItemListData from "../../data/mocks/forecastItemListData";
 import AppFrame from "../../components/AppFrame";
 import config from "../../config";
 

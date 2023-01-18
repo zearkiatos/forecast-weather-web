@@ -1,17 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Alert from "@mui/material/Alert";
-import axios from "axios";
-import convertUnits from "convert-units";
 import CityInfo from "../CityInfo";
 import Weather from "../Weather";
-import WEATHERS from "../../utils/constants/weathers";
-import config from "../../config";
-
-const getCityCode = (city, countryCode) => `${city}-${countryCode}`;
+import useCityList from "../../hooks/useCityList";
+import { getCityCode } from "../../utils/constants/cities";
 
 const renderCity =
   (eventOnClickCity) =>
@@ -38,44 +34,7 @@ const renderCity =
   };
 
 const CityList = ({ cities, onClickCity }) => {
-  const [allWeather, setAllWeather] = useState({});
-  const [error, setError] = useState(null);
-  const getWeather = async (city, countryCode) => {
-    try {
-      const response = await axios.get(
-        `${config.OPEN_WEATHER_MAP.API_BASE_URL}/data/${config.OPEN_WEATHER_MAP.VERSION}/weather?q=${city},${countryCode}&appid=${config.OPEN_WEATHER_MAP.API_KEY}`
-      );
-
-      if (response) {
-        const { data } = response;
-
-        const temperature = Number(
-          convertUnits(data.main.temp).from("K").to("C")
-        ).toFixed(0);
-        const state = WEATHERS[data.weather[0].main.toUpperCase()];
-        const propertyName = getCityCode(city, countryCode);
-        const propertyValue = { temperature, state };
-        setAllWeather((allWeather) => ({
-          ...allWeather,
-          [propertyName]: propertyValue,
-        }));
-      }
-    } catch (ex) {
-      if (ex.response) {
-        setError("There was ocurred an error in the weather server");
-      } else if (ex.request) {
-        setError("Verify your internet connection");
-      } else {
-        const errorMessage = `Error ${ex.message}`;
-        setError(errorMessage);
-      }
-    }
-  };
-  useEffect(() => {
-    cities.forEach(({ city, countryCode }) => {
-      getWeather(city, countryCode);
-    });
-  }, [cities]);
+  const { allWeather, error, setError } = useCityList(cities);
   const onCloseError = () => setError(null);
   return (
     <div>
