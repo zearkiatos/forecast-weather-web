@@ -10,18 +10,13 @@ import Weather from "../../components/Weather";
 import WeatherDetails from "../../components/WeatherDetails";
 import ForecastChart from "../../components/ForecastChart";
 import Forecast from "../../components/Forecast";
-import WEATHERS from "../../utils/constants/weathers";
 import AppFrame from "../../components/AppFrame";
 import config from "../../config";
 
-const City = () => {
-  const [data, setData] = useState(null);
+const useCityPage = () => {
+  const [chartData, setChartData] = useState(null);
   const [forecastItemList, setForecastItemList] = useState(null);
   const { city, countryCode } = useParams();
-  const state = WEATHERS.CLOUDY;
-  const temperature = 20;
-  const humidity = 80;
-  const wind = 5;
   const getForecast = async () => {
     const toCelsius = (temp) =>
       Number(convertUnits(temp).from("K").to("C").toFixed());
@@ -47,7 +42,7 @@ const City = () => {
           max: toCelsius(Math.max(...temps)),
         };
       });
-      setData(date);
+      setChartData(date);
       const interval = [4, 8, 12, 16, 20, 24];
 
       const forecastItemList = data.list
@@ -65,7 +60,14 @@ const City = () => {
   };
   useEffect(() => {
     getForecast();
-  }, []);
+  }, [city, countryCode]);
+
+  return { city, chartData, forecastItemList, countryCode };
+};
+
+const City = () => {
+  const { city, chartData, forecastItemList, countryCode } = useCityPage();
+  console.log("forecastItemList", forecastItemList);
   return (
     <AppFrame>
       <Grid
@@ -81,13 +83,24 @@ const City = () => {
           justifyContent="center"
           alignItems="flex-end"
         >
-          <CityInfo city={city} country={countryCode} />
+          {city && countryCode && (
+            <CityInfo city={city} country={countryCode} />
+          )}
         </Grid>
-        <Grid container item xs={12} justifyContent="center">
-          <Weather state={state} temperature={temperature} />
-          <WeatherDetails humidity={humidity} wind={wind} />
-        </Grid>
-        <Grid item>{data && <ForecastChart data={data} />}</Grid>
+        {forecastItemList && (
+          <Grid container item xs={12} justifyContent="center">
+            <Weather
+              state={forecastItemList.state}
+              temperature={forecastItemList.temperature}
+            />
+            <WeatherDetails
+              humidity={forecastItemList.humidity}
+              wind={forecastItemList.wind}
+            />
+          </Grid>
+        )}
+
+        <Grid item>{chartData && <ForecastChart data={chartData} />}</Grid>
         <Grid item>
           {forecastItemList && <Forecast forecastItemList={forecastItemList} />}
         </Grid>
