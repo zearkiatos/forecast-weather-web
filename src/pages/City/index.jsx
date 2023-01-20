@@ -26,22 +26,25 @@ const useCityPage = () => {
       console.log(data);
       const daysAhead = [0, 1, 2, 3, 4, 5];
       const days = daysAhead.map((day) => moment().add(day, "d"));
-      const date = days.map((day) => {
-        const tempObjectArray = data.list.filter((item) => {
-          const dayOfYear = moment.unix(item.dt).dayOfYear();
-          return dayOfYear === day.dayOfYear();
-        });
-        console.log("dayOfYear", day.dayOfYear());
-        console.log("tempObjectArray", tempObjectArray);
-        const temps = tempObjectArray.map((item) => item.main.temp);
+      const date = days
+        .map((day) => {
+          const tempObjectArray = data.list.filter((item) => {
+            const dayOfYear = moment.unix(item.dt).dayOfYear();
+            return dayOfYear === day.dayOfYear();
+          });
+          console.log("dayOfYear", day.dayOfYear());
+          console.log("tempObjectArray", tempObjectArray);
+          const temps = tempObjectArray.map((item) => item.main.temp);
 
-        console.log(temps);
-        return {
-          dayHour: day.format("ddd"),
-          min: toCelsius(Math.min(...temps)),
-          max: toCelsius(Math.max(...temps)),
-        };
-      });
+          console.log(temps);
+          return {
+            dayHour: day.format("ddd"),
+            min: toCelsius(Math.min(...temps)),
+            max: toCelsius(Math.max(...temps)),
+            hasTemperature: temps.length > 0,
+          };
+        })
+        .filter((item) => item.hasTemperature);
       setChartData(date);
       const interval = [4, 8, 12, 16, 20, 24];
 
@@ -51,6 +54,8 @@ const useCityPage = () => {
           hour: moment.unix(item.dt).hour(),
           weekDay: moment.unix(item.dt).format("dddd"),
           state: item.weather[0].main.toUpperCase(),
+          humidity: item.main.humidity,
+          wind: item.wind.speed,
           temperature: toCelsius(item.main.temp),
         }));
       setForecastItemList(forecastItemList);
@@ -90,12 +95,12 @@ const City = () => {
         {forecastItemList && (
           <Grid container item xs={12} justifyContent="center">
             <Weather
-              state={forecastItemList.state}
-              temperature={forecastItemList.temperature}
+              state={forecastItemList[0].state}
+              temperature={forecastItemList[0].temperature}
             />
             <WeatherDetails
-              humidity={forecastItemList.humidity}
-              wind={forecastItemList.wind}
+              humidity={forecastItemList[0].humidity}
+              wind={forecastItemList[0].wind}
             />
           </Grid>
         )}
