@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 import convertUnits from "convert-units";
-import config from "../../config";
+import { getForecastUrl } from "../../utils/constants/urls";
 
 const useCityPage = () => {
   const [chartData, setChartData] = useState(null);
@@ -12,10 +12,9 @@ const useCityPage = () => {
   const getForecast = async () => {
     const toCelsius = (temp) =>
       Number(convertUnits(temp).from("K").to("C").toFixed());
-    const url = `${config.OPEN_WEATHER_MAP.API_BASE_URL}/data/${config.OPEN_WEATHER_MAP.VERSION}/forecast?q=${city},${countryCode}&appid=${config.OPEN_WEATHER_MAP.API_KEY}`;
+    const url = getForecastUrl({ city, countryCode });
     try {
       const { data } = await axios.get(url);
-      console.log(data);
       const daysAhead = [0, 1, 2, 3, 4, 5];
       const days = daysAhead.map((day) => moment().add(day, "d"));
       const date = days
@@ -24,11 +23,8 @@ const useCityPage = () => {
             const dayOfYear = moment.unix(item.dt).dayOfYear();
             return dayOfYear === day.dayOfYear();
           });
-          console.log("dayOfYear", day.dayOfYear());
-          console.log("tempObjectArray", tempObjectArray);
           const temps = tempObjectArray.map((item) => item.main.temp);
 
-          console.log(temps);
           return {
             dayHour: day.format("ddd"),
             min: toCelsius(Math.min(...temps)),

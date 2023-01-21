@@ -11,7 +11,6 @@ import useCityPage from "../../hooks/useCityPage";
 
 const City = () => {
   const { city, chartData, forecastItemList, countryCode } = useCityPage();
-  console.log("forecastItemList", forecastItemList);
   return (
     <AppFrame>
       <Grid

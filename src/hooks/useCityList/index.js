@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import convertUnits from "convert-units";
 import WEATHERS from "../../utils/constants/weathers";
-import config from "../../config";
 import { getCityCode } from "../../utils/constants/cities";
+import { getWeatherUrl } from "../../utils/constants/urls";
 
 const useCityList = (cities) => {
   const [allWeather, setAllWeather] = useState({});
@@ -11,7 +11,10 @@ const useCityList = (cities) => {
   const getWeather = async (city, countryCode) => {
     try {
       const response = await axios.get(
-        `${config.OPEN_WEATHER_MAP.API_BASE_URL}/data/${config.OPEN_WEATHER_MAP.VERSION}/weather?q=${city},${countryCode}&appid=${config.OPEN_WEATHER_MAP.API_KEY}`
+        getWeatherUrl({
+          city,
+          countryCode,
+        })
       );
 
       if (response) {
