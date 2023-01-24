@@ -2,16 +2,14 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
-import convertUnits from "convert-units";
 import { getForecastUrl } from "../../utils/constants/urls";
+import { toCelsius } from "../../utils/constants/convertion";
 
 const useCityPage = () => {
   const [chartData, setChartData] = useState(null);
   const [forecastItemList, setForecastItemList] = useState(null);
   const { city, countryCode } = useParams();
   const getForecast = async () => {
-    const toCelsius = (temp) =>
-      Number(convertUnits(temp).from("K").to("C").toFixed());
     const url = getForecastUrl({ city, countryCode });
     try {
       const { data } = await axios.get(url);
