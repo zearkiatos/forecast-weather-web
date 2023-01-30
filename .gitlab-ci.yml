@@ -1,4 +1,4 @@
-image: node:15-alpine
+image: node:18-alpine
 stages:
   - install
   - test
@@ -9,9 +9,11 @@ stages:
 install-dependencies:
   stage: install
   script:
-    - apk update && apk add python make g++
+    - echo -e "http://nl.alpinelinux.org/alpine/v3.17/main\nhttp://nl.alpinelinux.org/alpine/v3.17/community" > /etc/apk/repositories
+    - apk update && apk add python3 make g++
     - apk add --update nodejs npm
-    - npm install --silent
+    - npm install -g npm
+    - npm install --force
     - npm install react-scripts -g --silent
     - npm install nodemon -g --silent
   artifacts:

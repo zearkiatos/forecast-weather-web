@@ -1,13 +1,14 @@
-FROM node:15-alpine
+FROM node:18-alpine
 
-RUN apk update && apk add python make g++
+RUN echo -e "http://nl.alpinelinux.org/alpine/v3.17/main\nhttp://nl.alpinelinux.org/alpine/v3.17/community" > /etc/apk/repositories
+RUN apk update && apk add python3 make g++
 RUN apk add --update nodejs npm
 
 WORKDIR /app
 
 COPY . ./
-
-RUN npm install --silent
+RUN npm install -g npm
+RUN npm install --force
 RUN npm install react-scripts -g --silent
 RUN npx browserslist@latest --update-db
 RUN npx -p @storybook/cli sb init
