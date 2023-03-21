@@ -10,7 +10,6 @@ COPY . ./
 RUN npm install -g npm
 RUN npm install --force
 RUN npm install react-scripts -g --silent
-RUN npx browserslist@latest --update-db
 RUN npx -p @storybook/cli sb init
 RUN npm install nodemon -g --silent
 RUN npm install concurrently -g --silent

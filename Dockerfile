@@ -2,12 +2,11 @@ FROM node:18-alpine AS builder
 
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm install
+RUN npm install --force
 
 ENV PATH="./node_modules/.bin:$PATH"
 
 COPY . ./
-RUN npx browserslist@latest --update-db
 RUN npm run build
 
 FROM nginx:1.17-alpine
