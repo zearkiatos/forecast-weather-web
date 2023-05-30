@@ -14,10 +14,10 @@ const useCityList = (cities) => {
           countryCode,
         })
       );
-      const allWeatherAux = getAllWeather(response, city, countryCode)
+      const allWeatherTransformed = getAllWeather(response, city, countryCode)
       setAllWeather(allWeather => ({
         ...allWeather,
-        ...allWeatherAux
+        ...allWeatherTransformed
       }));
     } catch (ex) {
       if (ex.response) {
