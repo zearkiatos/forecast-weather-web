@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import moment from "moment";
 import { getForecastUrl } from "../../utils/constants/urls";
-import { toCelsius } from "../../utils/constants/convertion";
 import getChartData from "../../utils/transform/getChartData";
+import getForecastItemList from "../../utils/transform/getForecastItemList";
 
 const useCityPage = () => {
   const [chartData, setChartData] = useState(null);
@@ -16,18 +15,7 @@ const useCityPage = () => {
       const { data } = await axios.get(url);
       const date = getChartData(data);
       setChartData(date);
-      const interval = [4, 8, 12, 16, 20, 24];
-
-      const forecastItemList = data.list
-        .filter((item, index) => interval.includes(index))
-        .map((item) => ({
-          hour: moment.unix(item.dt).hour(),
-          weekDay: moment.unix(item.dt).format("dddd"),
-          state: item.weather[0].main.toUpperCase(),
-          humidity: item.main.humidity,
-          wind: item.wind.speed,
-          temperature: toCelsius(item.main.temp),
-        }));
+      const forecastItemList = getForecastItemList(data);
       setForecastItemList(forecastItemList);
     } catch (ex) {
       console.error(`Error: ${ex.message}`);
