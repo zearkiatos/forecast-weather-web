@@ -1,5 +1,6 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
+import LinearProgress from "@mui/material/LinearProgress";
 import "moment/locale/es";
 import CityInfo from "../../components/CityInfo";
 import Weather from "../../components/Weather";
@@ -42,7 +43,9 @@ const City = () => {
             />
           </Grid>
         )}
-
+        <Grid item>
+          {!chartData && !forecastItemList && <LinearProgress />}
+        </Grid>
         <Grid item>{chartData && <ForecastChart data={chartData} />}</Grid>
         <Grid item>
           {forecastItemList && <Forecast forecastItemList={forecastItemList} />}
