@@ -3,44 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { Paper } from "@mui/material";
 import CityList from "../../components/CityList";
 import AppFrame from "../../components/AppFrame";
+import { getCities } from "../../services/mock/cities";
 
-const citiesMock = [
-  {
-    city: "New York",
-    country: "United States",
-    countryCode: "US",
-  },
-  {
-    city: "Santiago de Chile",
-    country: "Chile",
-    countryCode: "CL",
-  },
-  {
-    city: "Puerto Cabello",
-    country: "Venezuela",
-    countryCode: "VE",
-  },
-  {
-    city: "Buenos Aires",
-    country: "Argentina",
-    countryCode: "AR",
-  },
-  {
-    city: "Bogota",
-    country: "Colombia",
-    countryCode: "CO",
-  },
-  {
-    city: "Madrid",
-    country: "Spain",
-    countryCode: "ES",
-  },
-  {
-    city: "Ciudad de Mexico",
-    country: "Mexico",
-    countryCode: "MX",
-  },
-];
+const cities = getCities();
 const Main = () => {
   const navigate = useNavigate();
 
@@ -50,7 +15,7 @@ const Main = () => {
   return (
     <AppFrame>
       <Paper elevation={3}>
-        <CityList cities={citiesMock} onClickCity={onClickHandler} />
+        <CityList cities={cities} onClickCity={onClickHandler} />
       </Paper>
     </AppFrame>
   );
