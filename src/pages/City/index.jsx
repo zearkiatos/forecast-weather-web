@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Grid from "@mui/material/Grid";
 import LinearProgress from "@mui/material/LinearProgress";
 import "moment/locale/es";
@@ -13,18 +13,17 @@ import useCityList from "../../hooks/useCityList";
 import { getCityCode } from "../../utils/constants/cities";
 import { getCountryNameByCountryCode } from "../../services/mock/cities";
 
-let cities = null;
-
 const City = () => {
   const { city, chartData, forecastItemList, countryCode } = useCityPage();
-  if (
-    !cities ||
-    !cities[0] ||
-    cities[0].city !== city ||
-    cities[0].countryCode !== countryCode
-  ) {
-    cities = [{ city, countryCode }];
-  }
+  const cities = useMemo(
+    () => [
+      {
+        city,
+        countryCode,
+      },
+    ],
+    [city, countryCode]
+  );
   const { allWeather } = useCityList(cities);
 
   const weather = allWeather[getCityCode(city, countryCode)];
