@@ -19,11 +19,11 @@ const City = () => {
   const weather = allWeather[getCityCode(city, countryCode)];
 
   const country = countryCode && getCountryNameByCountryCode(countryCode);
-  const humidity = 80;
-  const wind = 5;
 
   const state = weather && weather.state;
   const temperature = weather && weather.temperature;
+  const humidity = weather && weather.humidity;
+  const wind = weather && weather.wind;
 
   return (
     <AppFrame>
@@ -40,17 +40,12 @@ const City = () => {
           justifyContent="center"
           alignItems="flex-end"
         >
-          {city && country && (
-            <CityInfo city={city} country={country} />
-          )}
+          {city && country && <CityInfo city={city} country={country} />}
         </Grid>
-        {forecastItemList && (
+        {state && temperature && (
           <Grid container item xs={12} justifyContent="center">
             <Weather state={state} temperature={temperature} />
-            <WeatherDetails
-              humidity={forecastItemList[0].humidity}
-              wind={forecastItemList[0].wind}
-            />
+            <WeatherDetails humidity={humidity} wind={wind} />
           </Grid>
         )}
         <Grid item>
