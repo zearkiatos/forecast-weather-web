@@ -9,7 +9,8 @@ import {
   WiSnow,
   WiNightClear,
   WiThunderstorm,
-  WiRaindrop
+  WiRaindrop,
+  WiDayHaze,
 } from "react-icons/wi";
 import { IconContext } from "react-icons";
 import WEATHERS from "../../utils/constants/weathers";
@@ -25,7 +26,8 @@ const stateByName = {
   NIGHT_CLEAR: <WiNightClear />,
   CLEAR: <WiDaySunny />,
   DRIZZLE: <WiRaindrop />,
-  THUNDERSTORM: <WiThunderstorm />
+  THUNDERSTORM: <WiThunderstorm />,
+  HAZE: <WiDayHaze />,
 };
 
 const IconState = ({ state }) => {

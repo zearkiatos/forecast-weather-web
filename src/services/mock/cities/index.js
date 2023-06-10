@@ -1,37 +1,37 @@
 const cities = [
   {
     city: "New York",
-    country: "United States",
+    country: "United States 🇺🇸",
     countryCode: "US",
   },
   {
     city: "Santiago de Chile",
-    country: "Chile",
+    country: "Chile 🇨🇱",
     countryCode: "CL",
   },
   {
     city: "Puerto Cabello",
-    country: "Venezuela",
+    country: "Venezuela 🇻🇪",
     countryCode: "VE",
   },
   {
     city: "Buenos Aires",
-    country: "Argentina",
+    country: "Argentina 🇦🇷",
     countryCode: "AR",
   },
   {
     city: "Bogota",
-    country: "Colombia",
+    country: "Colombia 🇨🇴",
     countryCode: "CO",
   },
   {
     city: "Madrid",
-    country: "Spain",
+    country: "Spain 🇪🇸",
     countryCode: "ES",
   },
   {
     city: "Ciudad de Mexico",
-    country: "Mexico",
+    country: "Mexico 🇲🇽",
     countryCode: "MX",
   },
 ];
