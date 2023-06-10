@@ -42,12 +42,12 @@ const City = () => {
         >
           {city && country && <CityInfo city={city} country={country} />}
         </Grid>
-        {state && temperature && (
-          <Grid container item xs={12} justifyContent="center">
-            <Weather state={state} temperature={temperature} />
+        <Grid container item xs={12} justifyContent="center">
+          <Weather state={state} temperature={temperature} />
+          {humidity && wind && (
             <WeatherDetails humidity={humidity} wind={wind} />
-          </Grid>
-        )}
+          )}
+        </Grid>
         <Grid item>
           {!chartData && !forecastItemList && <LinearProgress />}
         </Grid>
