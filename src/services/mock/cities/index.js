@@ -36,6 +36,9 @@ const cities = [
   },
 ];
 
+const getCountryNameByCountryCode = (countryCode) =>
+  cities.filter((city) => city.countryCode === countryCode)[0].country;
+
 const getCities = () => cities;
 
-export { getCities };
+export { getCities, getCountryNameByCountryCode };

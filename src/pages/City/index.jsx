@@ -9,9 +9,22 @@ import ForecastChart from "../../components/ForecastChart";
 import Forecast from "../../components/Forecast";
 import AppFrame from "../../components/AppFrame";
 import useCityPage from "../../hooks/useCityPage";
+import useCityList from "../../hooks/useCityList";
+import { getCityCode } from "../../utils/constants/cities";
+import { getCountryNameByCountryCode } from "../../services/mock/cities";
 
 const City = () => {
   const { city, chartData, forecastItemList, countryCode } = useCityPage();
+  const { allWeather } = useCityList([{ city, countryCode }]);
+  const weather = allWeather[getCityCode(city, countryCode)];
+
+  const country = countryCode && getCountryNameByCountryCode(countryCode);
+  const humidity = 80;
+  const wind = 5;
+
+  const state = weather && weather.state;
+  const temperature = weather && weather.temperature;
+
   return (
     <AppFrame>
       <Grid
@@ -27,16 +40,13 @@ const City = () => {
           justifyContent="center"
           alignItems="flex-end"
         >
-          {city && countryCode && (
-            <CityInfo city={city} country={countryCode} />
+          {city && country && (
+            <CityInfo city={city} country={country} />
           )}
         </Grid>
         {forecastItemList && (
           <Grid container item xs={12} justifyContent="center">
-            <Weather
-              state={forecastItemList[0].state}
-              temperature={forecastItemList[0].temperature}
-            />
+            <Weather state={state} temperature={temperature} />
             <WeatherDetails
               humidity={forecastItemList[0].humidity}
               wind={forecastItemList[0].wind}

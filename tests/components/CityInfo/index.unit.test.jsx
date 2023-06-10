@@ -14,7 +14,7 @@ describe("Unit test suite for CityInfo component", () => {
 
     const cityAndCountryComponents = await findAllByRole("heading");
 
-    expect(cityAndCountryComponents[0]).toHaveTextContent(cityExpected);
-    expect(cityAndCountryComponents[1]).toHaveTextContent(countryExpected);
+    expect(cityAndCountryComponents[0]).toHaveTextContent(countryExpected);
+    expect(cityAndCountryComponents[1]).toHaveTextContent(cityExpected);
   });
 });
