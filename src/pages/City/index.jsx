@@ -13,9 +13,20 @@ import useCityList from "../../hooks/useCityList";
 import { getCityCode } from "../../utils/constants/cities";
 import { getCountryNameByCountryCode } from "../../services/mock/cities";
 
+let cities = null;
+
 const City = () => {
   const { city, chartData, forecastItemList, countryCode } = useCityPage();
-  const { allWeather } = useCityList([{ city, countryCode }]);
+  if (
+    !cities ||
+    !cities[0] ||
+    cities[0].city !== city ||
+    cities[0].countryCode !== countryCode
+  ) {
+    cities = [{ city, countryCode }];
+  }
+  const { allWeather } = useCityList(cities);
+
   const weather = allWeather[getCityCode(city, countryCode)];
 
   const country = countryCode && getCountryNameByCountryCode(countryCode);
