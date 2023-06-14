@@ -9,7 +9,7 @@ describe("Unit test suite for CityList component", () => {
   test("Should render CityList component", async () => {
     const cities = [new CityBuilder().build()];
     const { findAllByRole } = render(
-      <CityList cities={cities} onClickCity={jest.fn()} />
+      <CityList onSetAllWeather={jest.fn()} cities={cities} onClickCity={jest.fn()} />
     );
 
     const cityListComponent = await findAllByRole("button");
