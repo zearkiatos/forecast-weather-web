@@ -4,7 +4,6 @@ import { getWeatherUrl } from "../../utils/constants/urls";
 import getAllWeather from "../../utils/transform/getAllWeather";
 
 const useCityList = (cities, onSetAllWeather) => {
-  // const [allWeather, setAllWeather] = useState({});
   const [error, setError] = useState(null);
   const getWeather = async (city, countryCode) => {
     try {
@@ -15,13 +14,8 @@ const useCityList = (cities, onSetAllWeather) => {
         })
       );
       const allWeatherTransformed = getAllWeather(response, city, countryCode);
-      // setAllWeather(allWeather => ({
-      //   ...allWeather,
-      //   ...allWeatherTransformed
-      // }));
 
       onSetAllWeather({
-        ...allWeather,
         ...allWeatherTransformed,
       });
     } catch (ex) {
@@ -41,7 +35,7 @@ const useCityList = (cities, onSetAllWeather) => {
     });
   }, [cities, onSetAllWeather]);
 
-  return { allWeather, error, setError };
+  return { error, setError };
 };
 
 export default useCityList;

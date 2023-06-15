@@ -6,7 +6,7 @@ import AppFrame from "../../components/AppFrame";
 import { getCities } from "../../services/mock/cities";
 
 const cities = getCities();
-const Main = ({ onSetAllWeather }) => {
+const Main = ({ allWeather, onSetAllWeather }) => {
   const navigate = useNavigate();
 
   const onClickHandler = (city, countryCode) => {
@@ -16,6 +16,7 @@ const Main = ({ onSetAllWeather }) => {
     <AppFrame>
       <Paper elevation={3}>
         <CityList
+          allWeather={allWeather}
           onSetAllWeather={onSetAllWeather}
           cities={cities}
           onClickCity={onClickHandler}

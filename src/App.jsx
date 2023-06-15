@@ -13,9 +13,16 @@ const App = () => {
         <Route path="/" element={<Welcome />} />
         <Route
           path="/main"
-          element={<Main onSetAllWeather={setAllWeather} />}
+          element={
+            <Main allWeather={allWeather} onSetAllWeather={setAllWeather} />
+          }
         />
-        <Route path="/city/:countryCode/:city" element={<City />} />
+        <Route
+          path="/city/:countryCode/:city"
+          element={
+            <City allWeather={allWeather} onSetAllWeather={setAllWeather} />
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
