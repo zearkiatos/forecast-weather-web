@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Welcome from "./pages/Welcome";
 import Main from "./pages/Main";
@@ -7,6 +7,13 @@ import NotFound from "./pages/NotFound";
 
 const App = () => {
   const [allWeather, setAllWeather] = useState({});
+  const onSetAllWeather = (cityWeather) =>
+    setAllWeather((allWeather) => {
+      return {
+        ...allWeather,
+        ...cityWeather,
+      };
+    });
   return (
     <BrowserRouter>
       <Routes>
@@ -14,7 +21,7 @@ const App = () => {
         <Route
           path="/main"
           element={
-            <Main allWeather={allWeather} onSetAllWeather={setAllWeather} />
+            <Main allWeather={allWeather} onSetAllWeather={onSetAllWeather} />
           }
         />
         <Route

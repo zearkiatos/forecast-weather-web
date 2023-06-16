@@ -15,9 +15,7 @@ const useCityList = (cities, onSetAllWeather) => {
       );
       const allWeatherTransformed = getAllWeather(response, city, countryCode);
 
-      onSetAllWeather({
-        ...allWeatherTransformed,
-      });
+      onSetAllWeather(allWeatherTransformed);
     } catch (ex) {
       if (ex.response) {
         setError("There was ocurred an error in the weather server");
