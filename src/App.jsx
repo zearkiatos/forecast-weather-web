@@ -7,13 +7,16 @@ import NotFound from "./pages/NotFound";
 
 const App = () => {
   const [allWeather, setAllWeather] = useState({});
-  const onSetAllWeather = (cityWeather) =>
-    setAllWeather((allWeather) => {
-      return {
-        ...allWeather,
-        ...cityWeather,
-      };
-    });
+  const onSetAllWeather = useMemo(
+    () => (cityWeather) =>
+      setAllWeather((allWeather) => {
+        return {
+          ...allWeather,
+          ...cityWeather,
+        };
+      }),
+    [setAllWeather]
+  );
   return (
     <BrowserRouter>
       <Routes>
