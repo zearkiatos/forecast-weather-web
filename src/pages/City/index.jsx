@@ -13,7 +13,7 @@ import useCityList from "../../hooks/useCityList";
 import { getCityCode } from "../../utils/constants/cities";
 import { getCountryNameByCountryCode } from "../../services/mock/cities";
 
-const City = ({ allWeather, setAllWeather }) => {
+const City = ({ allWeather, onSetAllWeather }) => {
   const { city, chartData, forecastItemList, countryCode } = useCityPage();
   const cities = useMemo(
     () => [
@@ -24,7 +24,8 @@ const City = ({ allWeather, setAllWeather }) => {
     ],
     [city, countryCode]
   );
-  useCityList(cities, setAllWeather);
+
+  useCityList(cities, allWeather, onSetAllWeather);
 
   const weather = allWeather[getCityCode(city, countryCode)];
 

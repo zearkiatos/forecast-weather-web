@@ -30,7 +30,7 @@ const App = () => {
         <Route
           path="/city/:countryCode/:city"
           element={
-            <City allWeather={allWeather} onSetAllWeather={setAllWeather} />
+            <City allWeather={allWeather} onSetAllWeather={onSetAllWeather} />
           }
         />
         <Route path="*" element={<NotFound />} />
