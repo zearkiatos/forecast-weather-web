@@ -34,7 +34,7 @@ const useCityList = (cities, allWeather, onSetAllWeather) => {
         getWeather(city, countryCode);
       }
     });
-  }, [cities, onSetAllWeather]);
+  }, [cities, onSetAllWeather, allWeather]);
 
   return { error, setError };
 };
