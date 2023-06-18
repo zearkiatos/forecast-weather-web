@@ -8,6 +8,10 @@ const useCityList = (cities, allWeather, onSetAllWeather) => {
   const [error, setError] = useState(null);
   const getWeather = async (city, countryCode) => {
     try {
+      const propertyName = getCityCode(city, countryCode);
+      onSetAllWeather({
+        [propertyName]: {},
+      });
       const response = await axios.get(
         getWeatherUrl({
           city,
