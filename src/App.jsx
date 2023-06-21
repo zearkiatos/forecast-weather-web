@@ -7,6 +7,8 @@ import NotFound from "./pages/NotFound";
 
 const App = () => {
   const [allWeather, setAllWeather] = useState({});
+  const [chartData, onSetChartData] = useState(null);
+  const [forecastItemList, onSetForecastItemList] = useState(null);
   const onSetAllWeather = useCallback(
     (cityWeather) =>
       setAllWeather((allWeather) => {
@@ -21,15 +23,19 @@ const App = () => {
   const actions = useMemo(
     () => ({
       onSetAllWeather,
+      onSetChartData,
+      onSetForecastItemList,
     }),
-    [onSetAllWeather]
+    [onSetAllWeather, onSetChartData, onSetForecastItemList]
   );
 
   const data = useMemo(
     () => ({
       allWeather,
+      chartData,
+      forecastItemList,
     }),
-    [allWeather]
+    [allWeather, chartData, forecastItemList]
   );
   return (
     <BrowserRouter>

@@ -1,13 +1,11 @@
-import { useState, useEffect, useDebugValue } from "react";
+import { useEffect, useDebugValue } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { getForecastUrl } from "../../utils/constants/urls";
 import getChartData from "../../utils/transform/getChartData";
 import getForecastItemList from "../../utils/transform/getForecastItemList";
 
-const useCityPage = () => {
-  const [chartData, setChartData] = useState(null);
-  const [forecastItemList, setForecastItemList] = useState(null);
+const useCityPage = (onSetChartData, onSetForecastItemList) => {
   const { city, countryCode } = useParams();
   useDebugValue(`useCityPage ${city}`);
   const getForecast = async () => {
@@ -15,18 +13,18 @@ const useCityPage = () => {
     try {
       const { data } = await axios.get(url);
       const date = getChartData(data);
-      setChartData(date);
+      onSetChartData(date);
       const forecastItemList = getForecastItemList(data);
-      setForecastItemList(forecastItemList);
+      onSetForecastItemList(forecastItemList);
     } catch (ex) {
       console.error(`Error: ${ex.message}`);
     }
   };
   useEffect(() => {
     getForecast();
-  }, [city, countryCode]);
+  }, [city, countryCode, onSetChartData, onSetForecastItemList]);
 
-  return { city, chartData, forecastItemList, countryCode };
+  return { city, countryCode };
 };
 
 export default useCityPage;
