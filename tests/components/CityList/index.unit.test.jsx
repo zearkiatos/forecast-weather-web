@@ -9,7 +9,14 @@ describe("Unit test suite for CityList component", () => {
   test("Should render CityList component", async () => {
     const cities = [new CityBuilder().build()];
     const { findAllByRole } = render(
-      <CityList onSetAllWeather={jest.fn()} allWeather={{}} cities={cities} onClickCity={jest.fn()} />
+      <CityList
+        actions={{
+          onSetAllWeather: jest.fn(),
+        }}
+        data={{ allWeather: {} }}
+        cities={cities}
+        onClickCity={jest.fn()}
+      />
     );
 
     const cityListComponent = await findAllByRole("button");
@@ -28,7 +35,12 @@ describe("Unit test suite for CityList component", () => {
     ];
 
     const { findAllByRole } = render(
-      <CityList  onSetAllWeather={jest.fn()} allWeather={{}} cities={cities} onClickCity={clickOnItem} />
+      <CityList
+        actions={{ onSetAllWeather: jest.fn() }}
+        data={{ allWeather: {} }}
+        cities={cities}
+        onClickCity={clickOnItem}
+      />
     );
 
     const items = await findAllByRole("button");
