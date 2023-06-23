@@ -28,6 +28,7 @@ const stateByName = {
   DRIZZLE: <WiRaindrop />,
   THUNDERSTORM: <WiThunderstorm />,
   HAZE: <WiDayHaze />,
+  MIST: <WiDayFog />,
 };
 
 const IconState = ({ state }) => {

@@ -9,7 +9,8 @@ const WEATHERS = {
   DRIZZLE: "DROZZLE",
   THUNDERSTORM: "THUNDERSTORM",
   NIGHT_CLEAR: "NIGHT_CLEAR",
-  HAZE: "HAZE"
+  HAZE: "HAZE",
+  MIST: "MIST",
 };
 
 export default WEATHERS;
