@@ -4,18 +4,20 @@ import axios from "axios";
 import { getForecastUrl } from "../../utils/constants/urls";
 import getChartData from "../../utils/transform/getChartData";
 import getForecastItemList from "../../utils/transform/getForecastItemList";
+import { getCityCode } from "../../utils/constants/cities";
 
 const useCityPage = (onSetChartData, onSetForecastItemList) => {
   const { city, countryCode } = useParams();
   useDebugValue(`useCityPage ${city}`);
   const getForecast = async () => {
     const url = getForecastUrl({ city, countryCode });
+    const cityCode = getCityCode(city, countryCode);
     try {
       const { data } = await axios.get(url);
-      const date = getChartData(data);
-      onSetChartData(date);
+      const chartData = getChartData(data);
+      onSetChartData({ [cityCode]: chartData });
       const forecastItemList = getForecastItemList(data);
-      onSetForecastItemList(forecastItemList);
+      onSetForecastItemList({ [cityCode]: forecastItemList });
     } catch (ex) {
       console.error(`Error: ${ex.message}`);
     }
