@@ -15,8 +15,11 @@ import { getCountryNameByCountryCode } from "../../services/mock/cities";
 
 const City = ({ data, actions }) => {
   const { onSetAllWeather, onSetChartData, onSetForecastItemList } = actions;
-  const { allWeather, chartData, forecastItemList } = data;
-  const { city, countryCode } = useCityPage(onSetChartData, onSetForecastItemList);
+  const { allWeather, allChartData, allForecastItemList } = data;
+  const { city, countryCode } = useCityPage(
+    onSetChartData,
+    onSetForecastItemList
+  );
   const cities = useMemo(
     () => [
       {
@@ -29,7 +32,10 @@ const City = ({ data, actions }) => {
 
   useCityList(cities, allWeather, onSetAllWeather);
 
-  const weather = allWeather[getCityCode(city, countryCode)];
+  const cityCode = getCityCode(city, countryCode);
+  const weather = allWeather[cityCode];
+  const chartData = allChartData[cityCode];
+  const forecastItemList = allForecastItemList[cityCode];
 
   const country = countryCode && getCountryNameByCountryCode(countryCode);
 
@@ -64,9 +70,13 @@ const City = ({ data, actions }) => {
         <Grid item>
           {!chartData && !forecastItemList && <LinearProgress />}
         </Grid>
-        <Grid item>{chartData && <ForecastChart data={chartData} />}</Grid>
         <Grid item>
-          {forecastItemList && <Forecast forecastItemList={forecastItemList} />}
+          {chartData && <ForecastChart data={chartData} />}
+        </Grid>
+        <Grid item>
+          {forecastItemList && (
+            <Forecast forecastItemList={forecastItemList} />
+          )}
         </Grid>
       </Grid>
     </AppFrame>
