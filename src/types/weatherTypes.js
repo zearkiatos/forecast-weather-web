@@ -1,0 +1,5 @@
+const WEATHER_TYPES = {
+  SET_ALL_WEATHER: "SET_ALL_WEATHER",
+};
+
+export { WEATHER_TYPES };
