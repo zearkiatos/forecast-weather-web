@@ -17,6 +17,8 @@ const City = ({ data, actions }) => {
   const { onSetAllWeather, onSetChartData, onSetForecastItemList } = actions;
   const { allWeather, allChartData, allForecastItemList } = data;
   const { city, countryCode } = useCityPage(
+    allChartData,
+    allForecastItemList,
     onSetChartData,
     onSetForecastItemList
   );
@@ -70,13 +72,9 @@ const City = ({ data, actions }) => {
         <Grid item>
           {!chartData && !forecastItemList && <LinearProgress />}
         </Grid>
+        <Grid item>{chartData && <ForecastChart data={chartData} />}</Grid>
         <Grid item>
-          {chartData && <ForecastChart data={chartData} />}
-        </Grid>
-        <Grid item>
-          {forecastItemList && (
-            <Forecast forecastItemList={forecastItemList} />
-          )}
+          {forecastItemList && <Forecast forecastItemList={forecastItemList} />}
         </Grid>
       </Grid>
     </AppFrame>

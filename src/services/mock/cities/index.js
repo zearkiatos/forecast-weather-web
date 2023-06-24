@@ -34,6 +34,16 @@ const cities = [
     country: "Mexico 🇲🇽",
     countryCode: "MX",
   },
+  {
+    city: "Mérida",
+    country: "Venezuela 🇻🇪",
+    countryCode: "VE",
+  },
+  {
+    city: "Caracas",
+    country: "Venezuela 🇻🇪",
+    countryCode: "VE",
+  },
 ];
 
 const getCountryNameByCountryCode = (countryCode) =>

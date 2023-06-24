@@ -6,25 +6,45 @@ import getChartData from "../../utils/transform/getChartData";
 import getForecastItemList from "../../utils/transform/getForecastItemList";
 import { getCityCode } from "../../utils/constants/cities";
 
-const useCityPage = (onSetChartData, onSetForecastItemList) => {
+const useCityPage = (
+  allChartData,
+  allForecastItemList,
+  onSetChartData,
+  onSetForecastItemList
+) => {
   const { city, countryCode } = useParams();
   useDebugValue(`useCityPage ${city}`);
-  const getForecast = async () => {
-    const url = getForecastUrl({ city, countryCode });
-    const cityCode = getCityCode(city, countryCode);
-    try {
-      const { data } = await axios.get(url);
-      const chartData = getChartData(data);
-      onSetChartData({ [cityCode]: chartData });
-      const forecastItemList = getForecastItemList(data);
-      onSetForecastItemList({ [cityCode]: forecastItemList });
-    } catch (ex) {
-      console.error(`Error: ${ex.message}`);
-    }
-  };
   useEffect(() => {
-    getForecast();
-  }, [city, countryCode, onSetChartData, onSetForecastItemList]);
+    const getForecast = async () => {
+      const url = getForecastUrl({ city, countryCode });
+      const cityCode = getCityCode(city, countryCode);
+      try {
+        const { data } = await axios.get(url);
+        const chartData = getChartData(data);
+        onSetChartData({ [cityCode]: chartData });
+        const forecastItemList = getForecastItemList(data);
+        onSetForecastItemList({ [cityCode]: forecastItemList });
+      } catch (ex) {
+        console.error(`Error: ${ex.message}`);
+      }
+    };
+    const cityCode = getCityCode(city, countryCode);
+    if (
+      allChartData &&
+      allForecastItemList &&
+      !allChartData[cityCode] &&
+      !allForecastItemList[cityCode]
+    ) {
+      getForecast();
+    }
+  }, [
+    city,
+    countryCode,
+    onSetChartData,
+    onSetForecastItemList,
+    allChartData,
+    allForecastItemList,
+  ]);
 
   return { city, countryCode };
 };
