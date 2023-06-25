@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, useReducer } from "react";
+import React, { useReducer } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Welcome from "./pages/Welcome";
 import Main from "./pages/Main";
@@ -6,8 +6,12 @@ import City from "./pages/City";
 import NotFound from "./pages/NotFound";
 
 const App = () => {
-  const initializateValue = {};
-  const reducer = () => {};
+  const initializateValue = {
+    allWeather: {},
+    allChartData: {},
+    allForecastItemList: {},
+  };
+  const reducer = (state, action) => {};
   const [state, dispatch] = useReducer(reducer, initializateValue);
   // code for replace
   // const [allWeather, setAllWeather] = useState({});
