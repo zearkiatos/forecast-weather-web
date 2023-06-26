@@ -21,7 +21,7 @@ describe("Unit test suite for CityList component", () => {
 
     const cityListComponent = await findAllByRole("button");
 
-    expect(cityListComponent).toHaveLength(1);
+    expect(cityListComponent).toHaveLength(2);
   });
 
   test("Should make click on the each item", async () => {

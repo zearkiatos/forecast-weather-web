@@ -1,74 +1,61 @@
-import React, { useState, useCallback, useMemo, useReducer } from "react";
+import React, { useReducer } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Welcome from "./pages/Welcome";
 import Main from "./pages/Main";
 import City from "./pages/City";
 import NotFound from "./pages/NotFound";
+import { WEATHER_TYPES, FORECAST_TYPES, CHART_TYPES } from "./types";
 
 const App = () => {
-  const initializateValue = {};
-  const reducer = () => {};
-  const [state, dispatch] = useReducer(reducer, initializateValue);
-  // code for replace
-  const [allWeather, setAllWeather] = useState({});
-  const [allChartData, setAllChartData] = useState({});
-  const [allForecastItemList, setAllForecastItemList] = useState({});
-  const onSetAllWeather = useCallback(
-    (cityWeather) =>
-      setAllWeather((allWeather) => {
+  const initializateValue = {
+    allWeather: {},
+    allChartData: {},
+    allForecastItemList: {},
+  };
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case WEATHER_TYPES.SET_ALL_WEATHER:
+        const weatherCity = action.payload;
+        const newAllWeather = { ...state.allWeather, ...weatherCity };
         return {
-          ...allWeather,
-          ...cityWeather,
+          ...state,
+          allWeather: newAllWeather,
         };
-      }),
-    [setAllWeather]
-  );
+      case CHART_TYPES.SET_CHART_DATA:
+        const chartDataCity = action.payload;
+        const newAllChartData = {
+          ...state.allChartData,
+          ...chartDataCity,
+        };
+        return {
+          ...state,
+          allChartData: newAllChartData,
+        };
+      case FORECAST_TYPES.SET_FORECAST_ITEM_LIST:
+        const forecastItemListCity = action.payload;
+        const newAllForecastItemListCity = {
+          ...state.allForecastItemList,
+          ...forecastItemListCity,
+        };
 
-  const onSetChartData = useCallback(
-    (chartDataCity) => {
-      setAllChartData((chartData) => ({
-        ...chartData,
-        ...chartDataCity,
-      }));
-    },
-    [setAllChartData]
-  );
+        return {
+          ...state,
+          allForecastItemList: newAllForecastItemListCity,
+        };
 
-  const onSetForecastItemList = useCallback(
-    (forecastItemListCity) => {
-      setAllForecastItemList((forecastItemList) => ({
-        ...forecastItemList,
-        ...forecastItemListCity,
-      }));
-    },
-    [setAllForecastItemList]
-  );
-
-  const actions = useMemo(
-    () => ({
-      onSetAllWeather,
-      onSetChartData,
-      onSetForecastItemList,
-    }),
-    [onSetAllWeather, onSetChartData, onSetForecastItemList]
-  );
-
-  const data = useMemo(
-    () => ({
-      allWeather,
-      allChartData,
-      allForecastItemList,
-    }),
-    [allWeather, allChartData, allForecastItemList]
-  );
+      default:
+        return state;
+    }
+  };
+  const [state, dispatch] = useReducer(reducer, initializateValue);
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Welcome />} />
-        <Route path="/main" element={<Main data={data} actions={actions} />} />
+        <Route path="/main" element={<Main data={state} actions={dispatch} />} />
         <Route
           path="/city/:countryCode/:city"
-          element={<City data={data} actions={actions} />}
+          element={<City data={state} actions={dispatch} />}
         />
         <Route path="*" element={<NotFound />} />
       </Routes>

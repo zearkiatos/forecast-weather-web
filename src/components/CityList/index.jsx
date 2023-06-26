@@ -34,9 +34,8 @@ const renderCity =
   };
 
 const CityList = ({ cities, onClickCity, data, actions }) => {
-  const { onSetAllWeather } = actions;
   const { allWeather } = data;
-  const { error, setError } = useCityList(cities, allWeather, onSetAllWeather);
+  const { error, setError } = useCityList(cities, allWeather, actions);
   const onCloseError = () => setError(null);
   return (
     <div>
