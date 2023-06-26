@@ -23,7 +23,6 @@ const useCityPage = (allChartData, allForecastItemList, actions) => {
             [cityCode]: chartData,
           },
         });
-        // onSetChartData({ [cityCode]: chartData });
         const forecastItemList = getForecastItemList(data);
         actions({
           type: FORECAST_TYPES.SET_FORECAST_ITEM_LIST,
@@ -31,7 +30,6 @@ const useCityPage = (allChartData, allForecastItemList, actions) => {
             [cityCode]: forecastItemList,
           },
         });
-        // onSetForecastItemList({ [cityCode]: forecastItemList });
       } catch (ex) {
         console.error(`Error: ${ex.message}`);
       }

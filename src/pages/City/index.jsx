@@ -14,7 +14,6 @@ import { getCityCode } from "../../utils/constants/cities";
 import { getCountryNameByCountryCode } from "../../services/mock/cities";
 
 const City = ({ data, actions }) => {
-  // const { onSetAllWeather, onSetChartData, onSetForecastItemList } = actions;
   const { allWeather, allChartData, allForecastItemList } = data;
   const { city, countryCode } = useCityPage(
     allChartData,

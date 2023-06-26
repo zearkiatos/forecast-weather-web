@@ -7,7 +7,6 @@ import { getCities } from "../../services/mock/cities";
 
 const cities = getCities();
 const Main = ({ data, actions }) => {
-  const { allWeather } = data;
   const navigate = useNavigate();
 
   const onClickHandler = (city, countryCode) => {

@@ -10,9 +10,6 @@ const useCityList = (cities, allWeather, actions) => {
   const getWeather = async (city, countryCode) => {
     try {
       const propertyName = getCityCode(city, countryCode);
-      // onSetAllWeather({
-      //   [propertyName]: {},
-      // });
       actions({
         type: WEATHER_TYPES.SET_ALL_WEATHER,
         payload: { [propertyName]: {} },
@@ -24,8 +21,6 @@ const useCityList = (cities, allWeather, actions) => {
         })
       );
       const allWeatherTransformed = getAllWeather(response, city, countryCode);
-
-      // onSetAllWeather(allWeatherTransformed);
       actions({
         type: WEATHER_TYPES.SET_ALL_WEATHER,
         payload: allWeatherTransformed,
