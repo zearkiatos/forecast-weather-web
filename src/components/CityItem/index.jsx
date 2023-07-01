@@ -29,4 +29,6 @@ const CityItem = memo(
   }
 );
 
+CityItem.displayName = 'CityItemMemo';
+
 export default CityItem;

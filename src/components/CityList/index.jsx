@@ -55,4 +55,8 @@ CityList.propTypes = {
   onClickCity: PropTypes.func.isRequired,
 };
 
-export default memo(CityList);
+const CityListMemo = memo(CityList);
+
+CityListMemo.displayName = "CityListMemo";
+
+export default CityListMemo;
