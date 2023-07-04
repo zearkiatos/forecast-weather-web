@@ -5,20 +5,6 @@ import CityInfo from "../CityInfo";
 import Weather from "../Weather";
 import { getCityCode } from "../../utils/constants/cities";
 
-const areEqual = (prev, next) => {
-  debugger;
-  console.log("city", prev.city === next.city);
-  console.log("countryCode", prev.countryCode === next.countryCode);
-  console.log("country", prev.country === next.country);
-  console.log("weather", prev.weather === next.weather);
-  console.log(
-    "eventOnClickCity",
-    prev.eventOnClickCity === next.eventOnClickCity
-  );
-
-  return false;
-};
-
 const CityItem = memo(
   ({ city, countryCode, country, weather, eventOnClickCity }) => {
     return (
@@ -41,7 +27,6 @@ const CityItem = memo(
       </ListItem>
     );
   },
-  areEqual
 );
 
 CityItem.displayName = "CityItemMemo";

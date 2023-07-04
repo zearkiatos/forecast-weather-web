@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Paper } from "@mui/material";
 import CityList from "../../components/CityList";
@@ -9,9 +9,12 @@ const cities = getCities();
 const Main = ({ data, actions }) => {
   const navigate = useNavigate();
 
-  const onClickHandler = (city, countryCode) => {
-    navigate(`/city/${countryCode}/${city}`);
-  };
+  const onClickHandler = useCallback(
+    (city, countryCode) => {
+      navigate(`/city/${countryCode}/${city}`);
+    },
+    [navigate]
+  );
   return (
     <AppFrame>
       <Paper elevation={3}>
