@@ -11,6 +11,7 @@ const WEATHERS = {
   NIGHT_CLEAR: "NIGHT_CLEAR",
   HAZE: "HAZE",
   MIST: "MIST",
+  SMOKE: "SMOKE",
 };
 
 export default WEATHERS;

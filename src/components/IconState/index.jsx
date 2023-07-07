@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 import {
   WiCloud,
@@ -11,6 +11,7 @@ import {
   WiThunderstorm,
   WiRaindrop,
   WiDayHaze,
+  WiSmoke,
 } from "react-icons/wi";
 import { IconContext } from "react-icons";
 import WEATHERS from "../../utils/constants/weathers";
@@ -29,13 +30,20 @@ const stateByName = {
   THUNDERSTORM: <WiThunderstorm />,
   HAZE: <WiDayHaze />,
   MIST: <WiDayFog />,
+  SMOKE: <WiSmoke />,
 };
 
 const IconState = ({ state }) => {
+  const iconContextSize = useMemo(
+    () => ({
+      size: "5em",
+    }),
+    []
+  );
   const StateByName = () => stateByName[state] || <WiDaySunny />;
   return (
     <div>
-      <IconContext.Provider value={{ size: "5em" }}>
+      <IconContext.Provider value={iconContextSize}>
         <StateByName />
       </IconContext.Provider>
     </div>
