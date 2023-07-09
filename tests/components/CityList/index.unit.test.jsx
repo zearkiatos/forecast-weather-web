@@ -4,19 +4,24 @@ import { render, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import CityList from "../../../src/components/CityList";
 import CityBuilder from "../../builders/cityBuilder";
+import {
+  WeatherDispatchContext,
+  WeatherStateContext,
+} from "../../../src/contexts/WeatherContext";
 
 describe("Unit test suite for CityList component", () => {
   test("Should render CityList component", async () => {
     const cities = [new CityBuilder().build()];
     const { findAllByRole } = render(
-      <CityList
-        actions={{
+      <WeatherDispatchContext.Provider
+        value={{
           onSetAllWeather: jest.fn(),
         }}
-        data={{ allWeather: {} }}
-        cities={cities}
-        onClickCity={jest.fn()}
-      />
+      >
+        <WeatherStateContext.Provider value={{ allWeather: {} }}>
+          <CityList cities={cities} onClickCity={jest.fn()} />
+        </WeatherStateContext.Provider>
+      </WeatherDispatchContext.Provider>
     );
 
     const cityListComponent = await findAllByRole("button");
@@ -35,12 +40,11 @@ describe("Unit test suite for CityList component", () => {
     ];
 
     const { findAllByRole } = render(
-      <CityList
-        actions={{ onSetAllWeather: jest.fn() }}
-        data={{ allWeather: {} }}
-        cities={cities}
-        onClickCity={clickOnItem}
-      />
+      <WeatherDispatchContext.Provider value={{ onSetAllWeather: jest.fn() }}>
+        <WeatherStateContext.Provider value={{ allWeather: {} }}>
+          <CityList cities={cities} onClickCity={clickOnItem} />
+        </WeatherStateContext.Provider>
+      </WeatherDispatchContext.Provider>
     );
 
     const items = await findAllByRole("button");

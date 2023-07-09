@@ -6,7 +6,7 @@ import AppFrame from "../../components/AppFrame";
 import { getCities } from "../../services/mock/cities";
 
 const cities = getCities();
-const Main = ({ data, actions }) => {
+const Main = () => {
   const navigate = useNavigate();
 
   const onClickHandler = useCallback(
@@ -19,8 +19,6 @@ const Main = ({ data, actions }) => {
     <AppFrame>
       <Paper elevation={3}>
         <CityList
-          data={data}
-          actions={actions}
           cities={cities}
           onClickCity={onClickHandler}
         />

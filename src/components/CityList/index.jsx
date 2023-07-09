@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useContext } from "react";
 import PropTypes from "prop-types";
 
 import List from "@mui/material/List";
@@ -6,6 +6,10 @@ import Alert from "@mui/material/Alert";
 import useCityList from "../../hooks/useCityList";
 import { getCityCode } from "../../utils/constants/cities";
 import CityItem from "../CityItem";
+import {
+  WeatherDispatchContext,
+  WeatherStateContext,
+} from "../../contexts/WeatherContext";
 
 const renderCity =
   (eventOnClickCity) =>
@@ -21,7 +25,9 @@ const renderCity =
     );
   };
 
-const CityList = ({ cities, onClickCity, data, actions }) => {
+const CityList = ({ cities, onClickCity }) => {
+  const actions = useContext(WeatherDispatchContext);
+  const data = useContext(WeatherStateContext);
   const { allWeather } = data;
   const { error, setError } = useCityList(cities, allWeather, actions);
   const onCloseError = () => setError(null);

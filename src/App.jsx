@@ -61,11 +61,11 @@ const App = () => {
             <Route path="/" element={<Welcome />} />
             <Route
               path="/main"
-              element={<Main data={state} actions={dispatch} />}
+              element={<Main />}
             />
             <Route
               path="/city/:countryCode/:city"
-              element={<City data={state} actions={dispatch} />}
+              element={<City />}
             />
             <Route path="*" element={<NotFound />} />
           </Routes>

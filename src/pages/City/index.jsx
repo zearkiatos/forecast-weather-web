@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useContext } from "react";
 import Grid from "@mui/material/Grid";
 import LinearProgress from "@mui/material/LinearProgress";
 import "moment/locale/es";
@@ -12,8 +12,11 @@ import useCityPage from "../../hooks/useCityPage";
 import useCityList from "../../hooks/useCityList";
 import { getCityCode } from "../../utils/constants/cities";
 import { getCountryNameByCountryCode } from "../../services/mock/cities";
+import { WeatherDispatchContext, WeatherStateContext } from "../../contexts/WeatherContext";
 
-const City = ({ data, actions }) => {
+const City = () => {
+  const actions = useContext(WeatherDispatchContext);
+  const data = useContext(WeatherStateContext);
   const { allWeather, allChartData, allForecastItemList } = data;
   const { city, countryCode } = useCityPage(
     allChartData,
