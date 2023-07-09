@@ -5,6 +5,10 @@ import Main from "./pages/Main";
 import City from "./pages/City";
 import NotFound from "./pages/NotFound";
 import { WEATHER_TYPES, FORECAST_TYPES, CHART_TYPES } from "./types";
+import {
+  WeatherStateContext,
+  WeatherDispatchContext,
+} from "./contexts/WeatherContext";
 
 const initializateValue = {
   allWeather: {},
@@ -50,17 +54,24 @@ const App = () => {
   }, []);
   const [state, dispatch] = useReducer(reducer, initializateValue);
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Welcome />} />
-        <Route path="/main" element={<Main data={state} actions={dispatch} />} />
-        <Route
-          path="/city/:countryCode/:city"
-          element={<City data={state} actions={dispatch} />}
-        />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
+    <WeatherDispatchContext.Provider value={dispatch}>
+      <WeatherStateContext.Provider value={state}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Welcome />} />
+            <Route
+              path="/main"
+              element={<Main data={state} actions={dispatch} />}
+            />
+            <Route
+              path="/city/:countryCode/:city"
+              element={<City data={state} actions={dispatch} />}
+            />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </WeatherStateContext.Provider>
+    </WeatherDispatchContext.Provider>
   );
 };
 
