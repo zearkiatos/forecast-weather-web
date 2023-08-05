@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: develop.Dockerfile
+    container_name: forecast-weather-web
+    volumes:
+      - ".:/app"
+    env_file:
+      - .env
+    ports:
+      - "3001:3000"
+      - "6007:6006"
+    tty: true

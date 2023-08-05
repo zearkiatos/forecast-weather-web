@@ -1,0 +1,70 @@
+name: Node.js CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: 
+      name: staging
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    - name: Set up Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Generate build number
+      run: echo "The build number $GITHUB_RUN_NUMBER 🏗"
+    - name: Install dependencies
+      run: npm install
+    - name: Public URL
+      run: export PUBLIC_URL=https://zearkiatos.github.io/forecast-weather-web/
+    - name: Create .env
+      run: |
+        touch .env &&
+        echo "REACT_APP_ENVIRONMENT=${ENVIRONMENT}" > .env
+        echo "REACT_APP_OPEN_WEATHER_MAP_API_BASE_URL=${OPEN_WEATHER_MAP_API_BASE_URL}" >> .env
+        echo "REACT_APP_OPEN_WEATHER_MAP_API_KEY=${OPEN_WEATHER_MAP_API_KEY}" >> .env
+        echo "REACT_APP_OPEN_WEATHER_MAP_DEFAULT_CITY=${OPEN_WEATHER_MAP_DEFAULT_CITY}" >> .env
+        echo "REACT_APP_OPEN_WEATHER_MAP_VERSION=${OPEN_WEATHER_MAP_VERSION}" >> .env
+      env:
+        ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
+        OPEN_WEATHER_MAP_API_BASE_URL: ${{secrets.OPEN_WEATHER_MAP_API_BASE_URL}}
+        OPEN_WEATHER_MAP_API_KEY: ${{secrets.OPEN_WEATHER_MAP_API_KEY}}
+        OPEN_WEATHER_MAP_DEFAULT_CITY: ${{secrets.OPEN_WEATHER_MAP_DEFAULT_CITY}}
+        OPEN_WEATHER_MAP_VERSION: ${{secrets.OPEN_WEATHER_MAP_VERSION}}
+    - name: Test 🧪
+      run: npm run test
+    - name: Build docker 🐳
+      run: docker build . -t=forecast-weather-web:ghb-$GITHUB_RUN_NUMBER
+    - name: Build
+      run: npm run build:ci
+    - name: Upload production-ready build files
+      uses: actions/upload-artifact@v2
+      with:
+        name: production-files
+        path: ./build
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: production-files
+        path: ./build
+
+
+    - name: Deploy to gh-pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist
+          

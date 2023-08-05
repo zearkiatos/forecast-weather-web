@@ -1,0 +1,5 @@
+const CHART_TYPES = {
+  SET_CHART_DATA: "SET_CHART_DATA",
+};
+
+export { CHART_TYPES };
